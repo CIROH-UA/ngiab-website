@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(() => {
   return {
-    base: '/ngiab-website/',
     build: {
       outDir: 'build',
     },
