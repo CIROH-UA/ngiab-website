@@ -24,7 +24,7 @@ const Home = () => {
 
       {/* About Section */}
       <About />
-
+      
       {/* Tools Section (Six tools linked to their respective repositories) */}
       <Tools />
 

@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePluginRadar } from 'vite-plugin-radar'
+import path from "path"
 
 export default defineConfig(() => {
   return {
@@ -16,6 +17,11 @@ export default defineConfig(() => {
         id: 'G-C862CJD7DH',
       },
     })],
+    resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      },
+    },
     css: {
       postcss: 'postcss.config.js',
     },
