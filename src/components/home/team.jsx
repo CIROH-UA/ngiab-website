@@ -97,7 +97,7 @@ const Team = () => {
       github: "https://github.com/JordanLaserGit",
       linkedin: "https://www.linkedin.com/in/jordan-laser",
       email: "jlaser@lynker.com",
-      department: "awi"
+      department: "lynker"
     },
     {
       name: "Trupesh Patel",
@@ -169,6 +169,15 @@ const Team = () => {
       github: "https://github.com/shahab122",
       linkedin: "https://www.linkedin.com/in/md-shahabul-alam/",
       email: "malam24@ua.edu",
+      department: "awi"
+    },
+    {
+      name: "Sai Harsha Vemula",
+      role: "DevOps Engineer",
+      image: "assets/img/team/Sai-Harsha-Vemula.jpeg",
+      github: "https://github.com/saiharshavemula",
+      linkedin: "https://www.linkedin.com/in/sai-harsha-vemula-1a611a1a3/",
+      email: "svemula1@ua.edu",
       department: "awi"
     },
     {
