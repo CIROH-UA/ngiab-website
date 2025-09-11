@@ -4,7 +4,7 @@ const Tools = () => {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center">
                     <h2 className="section-heading">NextGen In A Box Tools</h2>
-                    <h3 className="section-subheading">From data preprocessing with NGIAB DataPreprocess to real-time visualization on the Tethys Platform, these tools work together to empower researchers to drive innovation in hydrology.</h3>
+                    <h3 className="section-subheading">From data preprocessing to running hydrology models, doing evaluation, visualization, these tools work together to empower researchers to drive innovation in hydrology. Built with open-source technologies.</h3>
                 </div>
                 <div className="tool-grid">
                    {/* NGIAB-DataPreprocess */}
@@ -153,6 +153,32 @@ const Tools = () => {
                         <div className="tool-links">
                             <a 
                               href="https://github.com/CIROH-UA/ngen-datastream" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fab fa-github"></i>
+                                <span>View Source Code</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* NGIAB-Calibration */}
+                    <div 
+                      className="tool-card group"
+                    >
+                        <div className="tool-image-wrapper">
+                            <img className="tool-image" src="assets/img/tool/ngen_calibration.jpeg" alt="Calibration Tool" />
+                            <div className="tool-overlay"></div>
+                            <div className="tool-badge">Calibration</div>
+                        </div>
+                        <div className="tool-content">
+                            <h4 className="tool-title">NGIAB-CAL</h4>
+                            <p className="tool-description">Simplify and automate calibration process for NGIAB.</p>
+                        </div>
+                        <div className="tool-links">
+                            <a 
+                              href="https://github.com/CIROH-UA/ngiab-cal" 
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="tool-link"

@@ -12,6 +12,7 @@ import Hero from '../components/home/hero';
 import Tools from '../components/home/tools';
 import Partner from '../components/home/partner';
 import Contact from '../components/home/contact';
+import Blog from '../components/home/blog';
 
 const Home = () => {
 
@@ -23,7 +24,7 @@ const Home = () => {
 
       {/* About Section */}
       <About />
-
+      
       {/* Tools Section (Six tools linked to their respective repositories) */}
       <Tools />
 
@@ -32,6 +33,9 @@ const Home = () => {
 
       {/* Docker Pull Counter Section (gives real time Docker pull count using Vercel api) */}
       <Impact />
+
+      {/* Blog Section */}
+      <Blog />
 
       {/* Our Team Section with images */}
       <Team />
