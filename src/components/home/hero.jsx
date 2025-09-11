@@ -37,7 +37,7 @@ const Hero = () => {
     visible: { opacity: 1 },
   }
 
-  const words = "🎉Our NGIAB journal paper has been published in Environmental Modelling and Software.".split(" ")
+  const alert_words = "🔧 Do you currently use NGIAB? We'd love to hear from you!".split(" ")
 
   return (
        <header className="relative h-screen flex flex-col items-center justify-center text-white" data-aos="fade-down" data-aos-duration="1000" id="hero">
@@ -69,7 +69,7 @@ const Hero = () => {
                       animate="visible"
                       variants={fadeInVariants}
                     >
-                      {words.map((word, index) => (
+                      {alert_words.map((word, index) => (
                         <motion.span
                           key={index}
                           variants={wordVariants}
@@ -83,11 +83,11 @@ const Hero = () => {
                           targetTextColor="white"
                           className="text-white [&>div]:bg-[rgb(49,125,140)]"
                           as="a"
-                          href="https://www.sciencedirect.com/science/article/pii/S1364815225003500"
+                          href="https://ngiab.ciroh.org/scimeet25survey"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                         Read here!
+                         Take the NGIAB User Survey here.
                         </UnderlineToBackground>
                       </motion.span>
                     </motion.p>
