@@ -83,7 +83,7 @@ const Hero = () => {
                           targetTextColor="white"
                           className="text-white [&>div]:bg-[rgb(49,125,140)]"
                           as="a"
-                          href="https://ngiab.ciroh.org/scimeet25survey"
+                          href="https://forms.cloud.microsoft/r/KLvB51qQCb"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
