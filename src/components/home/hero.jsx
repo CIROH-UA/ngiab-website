@@ -37,7 +37,11 @@ const Hero = () => {
     visible: { opacity: 1 },
   }
 
-  const alert_words = "🔧 Do you currently use NGIAB? We'd love to hear from you!".split(" ")
+  const alert_message = "🎉Our NGIAB journal paper has been published in Environmental Modelling and Software.";
+  const link_message = "Read here!";
+  const link_href = "https://www.sciencedirect.com/science/article/pii/S1364815225003500";
+
+  const alert_words = alert_message.split(" ");
 
   return (
        <header className="relative h-screen flex flex-col items-center justify-center text-white" data-aos="fade-down" data-aos-duration="1000" id="hero">
@@ -83,11 +87,11 @@ const Hero = () => {
                           targetTextColor="white"
                           className="text-white [&>div]:bg-[rgb(49,125,140)]"
                           as="a"
-                          href="https://forms.cloud.microsoft/r/KLvB51qQCb"
+                          href={link_href}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                         Take the NGIAB User Survey here.
+                          {link_message}
                         </UnderlineToBackground>
                       </motion.span>
                     </motion.p>
