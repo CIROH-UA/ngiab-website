@@ -47,6 +47,12 @@ const Contact = () => {
                         </div>
                         <ul class="space-y-4">
                             <li class="flex items-center">
+                                <i class="fas fa-question-circle text-primary mr-3"></i>
+                                <a href="/feedback" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                    Feedback: ngiab.ciroh.org/feedback
+                                </a>
+                            </li>
+                            <li class="flex items-center">
                                 <i class="fas fa-envelope text-primary mr-3"></i>
                                 <a href="mailto:ciroh-it-support@ua.edu" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
                                     Email: ciroh-it-admin@ua.edu

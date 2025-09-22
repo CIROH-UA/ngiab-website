@@ -126,6 +126,14 @@ const Hero = () => {
                     >
                       Getting started
                     </a>
+                    <a 
+                      className="btn-primary text-xl px-12 py-4" 
+                      href="/feedback" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      Send feedback
+                    </a>
                   </div>
                 </div>
               </div>
