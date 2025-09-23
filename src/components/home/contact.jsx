@@ -60,8 +60,8 @@ const Contact = () => {
                             </li>
                             <li class="flex items-center">
                                 <i class="fab fa-slack text-primary mr-3"></i>
-                                <a href="https://cirohworkspace.slack.com/archives/C057BLQB867" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Slack: #ciroh-ua-it-support
+                                <a href="https://cirohworkspace.slack.com/archives/C05GL89GWUC" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                    Slack: #ngen-help-2023-2024-2025
                                 </a>
                             </li>
                             
