@@ -13,6 +13,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scimeet25survey" element={<RedirSurvey />} />
+            <Route path="/feedback" element={<RedirSurvey />} />
             {/* Add more routes here as needed */}
           </Routes>
         </main>
