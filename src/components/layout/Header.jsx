@@ -19,8 +19,10 @@ const Header = () => {
   const secondaryNav = [
     { id: 'documentation', label: 'Documentation', to: '/#documentation' },
     { id: 'impact', label: 'Impact', to: '/#impact' },
+    { id: 'testimonial', label: 'Community Spotlight', to: '/#testimonial' },
+    { id: 'blog', label: 'Blog', to: '/#blog' },
     { id: 'team', label: 'Team', to: '/#team' },
-    { id: 'partners', label: 'Partners', to: '/#partner' }
+    { id: 'partner', label: 'Partners', to: '/#partner' }
   ];
 
   useEffect(() => {
@@ -219,7 +221,7 @@ const Header = () => {
                         : 'text-white hover:text-primary'
                     }`}
                   >
-                    <span>{!isPrimaryNav(activeSection) && activeSection ? getSectionName(activeSection) : 'More'}</span>
+                    <span>More</span>
                     <i className={`fas fa-chevron-down text-xs transition-transform duration-300 ${
                       isMoreMenuOpen ? 'rotate-180' : ''
                     }`}></i>

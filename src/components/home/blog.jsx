@@ -18,13 +18,6 @@ const Blog = () => {
             Visit CIROH Blog
           </a>
         </div>
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <iframe
-            src="https://docs.ciroh.org/blog/tags/ngiab"
-            className="w-full h-[600px] border-0 rounded-lg"
-            title="CIROH Blog"
-          />
-        </div>
       </div>
     </section>
   );
