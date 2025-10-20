@@ -5,25 +5,26 @@ const Blog = () => {
     <section id="blog" className="py-16 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-8">
-          <h2 className="section-heading">More Blog Updates</h2>
-          <h3 className="section-subheading">Stay updated with the latest news and updates about NGIAB from CIROH</h3>
+          <h2 className="section-heading">More Updates</h2>
+          <h3 className="section-subheading">Stay updated with the latest news and updates about NGIAB from CIROH DocuHub</h3>
         </div>
         <div className="flex justify-center mb-8">
           <a
             href="https://docs.ciroh.org/blog/tags/ngiab"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-xl px-12 py-4"
+            className="btn-primary text-xl px-12 py-4 mx-3"
           >
-            Visit CIROH Blog
+            Blog Updates
           </a>
-        </div>
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <iframe
-            src="https://docs.ciroh.org/blog/tags/ngiab"
-            className="w-full h-[600px] border-0 rounded-lg"
-            title="CIROH Blog"
-          />
+          <a
+            href="https://docs.ciroh.org/news"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-xl px-12 py-4 mx-4"
+          >
+            News Updates
+          </a>
         </div>
       </div>
     </section>

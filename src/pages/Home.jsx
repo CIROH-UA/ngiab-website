@@ -13,6 +13,7 @@ import Tools from '../components/home/tools';
 import Partner from '../components/home/partner';
 import Contact from '../components/home/contact';
 import Blog from '../components/home/blog';
+import VideoTestimonial from '../components/home/VideoTestimonial';
 
 const Home = () => {
 
@@ -36,6 +37,9 @@ const Home = () => {
 
       {/* Blog Section */}
       <Blog />
+      
+      {/* Community Spotlight: Video Testimonial */}
+      <VideoTestimonial />
 
       {/* Our Team Section with images */}
       <Team />
