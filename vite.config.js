@@ -3,12 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePluginRadar } from 'vite-plugin-radar'
 import path from "path"
 
-export default defineConfig(({ mode }) => {
-  // Determine base path based on environment
-  const basePath = mode === 'staging' ? '/ngiab-website-staging/' : '/';
-  
+export default defineConfig(() => {
+  // Use environment variable for base path, fallback to staging path
   return {
-    base: basePath,
+    base: process.env.VITE_BASE_URL || '/ngiab-website-staging/',
     build: {
       outDir: 'dist',
     },

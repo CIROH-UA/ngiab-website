@@ -4,11 +4,11 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import RedirSurvey from './pages/RedirSurvey';
-import { config } from './config/environment';
 
 const App = () => {
+  const baseUrl = process.env.VITE_BASE_URL || '/ngiab-website-staging/';
   return (
-    <Router basename={config.routerBasename}>
+    <Router basename={baseUrl}>
         <Header />
         <main>
           <Routes>
