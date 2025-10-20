@@ -39,7 +39,7 @@ To learn more about the technologies used in this project:
 ## Deployment
 
 ### Staging Environment
-This repository automatically deploys to staging at `https://docs.ciroh.org/ngiab-website-staging` when changes are pushed to the main branch.
+This repository automatically deploys to staging at https://docs.ciroh.org/ngiab-website-staging when changes are pushed to the main branch.
 
 ### Production Deployment
 
