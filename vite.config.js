@@ -5,7 +5,7 @@ import path from "path"
 
 export default defineConfig(() => {
   return {
-    base: '/staging/',
+    base: '/ngiab-website-staging/',
     build: {
       outDir: 'dist',
     },

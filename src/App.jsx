@@ -7,7 +7,7 @@ import RedirSurvey from './pages/RedirSurvey';
 
 const App = () => {
   return (
-    <Router basename={'/staging/'}>
+    <Router basename={'/ngiab-website-staging/'}>
         <Header />
         <main>
           <Routes>
