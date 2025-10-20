@@ -35,12 +35,31 @@ To learn more about the technologies used in this project:
 - [React Router Documentation](https://reactrouter.com/)
 - [Styled Components Documentation](https://styled-components.com/docs)
 
-## Project Structure
 
-This project uses:
-- React 19
-- Vite 6
-- React Router 7
-- Styled Components
-- Tailwind CSS
-- Axios for HTTP requests
+## Deployment
+
+### Staging Environment
+This repository automatically deploys to staging at `https://docs.ciroh.org/ngiab-website-staging` when changes are pushed to the main branch.
+
+### Production Deployment
+
+To sync to production:
+
+#### Option 1: Direct Push (Immediate)
+```bash
+# Add production remote (one-time setup)
+git remote add production https://github.com/CIROH-UA/ngiab-website.git
+
+# Push directly to production
+git push production main
+```
+LL
+#### Option 2: Tagged Release (Automated)
+```bash
+# Tag a release
+git tag v1.0.0
+git push origin v1.0.0
+# GitHub Actions will automatically sync to production
+```
+
+**Note**: Both methods work! Use direct push for immediate deployment, or tagged releases for versioned deployments.

@@ -4,10 +4,11 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import RedirSurvey from './pages/RedirSurvey';
+import { config } from './config/environment';
 
 const App = () => {
   return (
-    <Router basename={'/ngiab-website-staging/'}>
+    <Router basename={config.routerBasename}>
         <Header />
         <main>
           <Routes>

@@ -1,0 +1,29 @@
+name: Sync to Production
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  sync-to-production:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout staging repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
+      - name: Add production remote
+        run: |
+          git remote add production https://github.com/CIROH-UA/ngiab-website.git
+      
+      - name: Push to production
+        run: |
+          git push production main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
