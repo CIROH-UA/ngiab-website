@@ -1,0 +1,74 @@
+name: Staging PR Deploy
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+env:
+  STAGING_REPO: ngiab-website-staging
+  STAGING_BRANCH: gh-pages
+
+jobs:
+  pr-build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: pr-staging
+      url: https://docs.ciroh.org/ngiab-website-staging/
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v3
+        with:
+          path: "pr-build"
+
+      - name: Install and Build
+        run: |
+          cd pr-build
+          npm install
+          npm run build
+        env:
+          CI: ""
+
+      - name: Checkout staging repo
+        uses: actions/checkout@v3
+        with:
+          repository: CIROH_UA/ngiab-website-staging
+          fetch-depth: 0
+          path: "staging-deploy"
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Deploy to staging
+        run: |
+          cd staging-deploy
+          git checkout gh-pages || git checkout --orphan gh-pages
+          
+          # Clear existing content
+          git rm -rf . || true
+          
+          # Copy built files
+          cp -r ../pr-build/dist/* .
+          
+          # Create/update PR marker file
+          echo "PR #${{ github.event.pull_request.number }}" > PR_INFO.txt
+          echo "Commit: ${{ github.sha }}" >> PR_INFO.txt
+          
+          git add .
+          git commit -m "Deploy PR #${{ github.event.pull_request.number }} - ${{ github.sha }}" || echo "No changes to commit"
+          git push -f origin gh-pages
+
+      - name: Comment PR with staging link
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Staging Preview:**
+            🚀 https://docs.ciroh.org/ngiab-website-staging/
+            
+            _Built from commit ${{ github.sha }}_
