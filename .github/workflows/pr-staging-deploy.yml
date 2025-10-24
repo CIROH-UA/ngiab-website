@@ -40,7 +40,7 @@ jobs:
       - name: Checkout staging repo
         uses: actions/checkout@v3
         with:
-          repository: CIROH_UA/ngiab-website-staging
+          repository: CIROH-UA/ngiab-website-staging
           fetch-depth: 0
           path: "staging-deploy"
           token: ${{ secrets.PAT_TOKEN }}
