@@ -1,7 +1,7 @@
 name: Staging PR Deploy
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [test-staging-workflow]
     types: [opened, synchronize, reopened]
 
