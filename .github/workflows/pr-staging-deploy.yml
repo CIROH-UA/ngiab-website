@@ -35,6 +35,7 @@ jobs:
         run: |
           cd pr-build
           npm install
+          export VITE_BASE_URL=/ngiab-website-staging/
           npm run build
         env:
           CI: ""
