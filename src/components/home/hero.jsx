@@ -133,8 +133,8 @@ const Hero = () => {
                     data-aos="zoom-in"
                     data-aos-delay="300"
                   />
-                  <h1 className="text-7xl font-bold uppercase mb-6" data-aos="fade-up" data-aos-delay="400">NextGen In A Boxxxx!!!</h1>
-                  <p className="text-4xl mb-12" data-aos="fade-up" data-aos-delay="600">Transforming Hydrology Modeling using open-source technologies</p>
+                  <h1 className="text-7xl font-bold uppercase mb-6" data-aos="fade-up" data-aos-delay="400">This is the staging website for the pr you just submitted...</h1>
+                  <p className="text-4xl mb-12" data-aos="fade-up" data-aos-delay="600">If this is working you should be able to see this change</p>
                   <div className="space-x-6" data-aos="fade-up" data-aos-delay="800">
                     <HashLink 
                       smooth 
