@@ -36,8 +36,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -71,8 +71,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -106,8 +106,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -141,8 +141,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -176,8 +176,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -211,8 +211,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
@@ -246,8 +246,8 @@ const Tools = () => {
                               rel="noopener noreferrer" 
                               className="tool-link"
                             >
-                                <i className="fas fa-exclamation-circle"></i>
-                                <span>Open Issue</span>
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
                             </a>
                         </div>
                     </div>
