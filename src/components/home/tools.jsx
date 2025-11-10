@@ -30,6 +30,15 @@ const Tools = () => {
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
                             </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/NGIAB_data_preprocess/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
+                            </a>
                         </div>
                     </div>
 
@@ -55,6 +64,15 @@ const Tools = () => {
                             >
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
+                            </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/NGIAB-CloudInfra/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
                             </a>
                         </div>
                     </div>
@@ -82,6 +100,15 @@ const Tools = () => {
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
                             </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/NGIAB-HPCInfra/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
+                            </a>
                         </div>
                     </div>
 
@@ -107,6 +134,15 @@ const Tools = () => {
                             >
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
+                            </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/ngiab-teehr/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
                             </a>
                         </div>
                     </div>
@@ -134,6 +170,15 @@ const Tools = () => {
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
                             </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/ngiab-client/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
+                            </a>
                         </div>
                     </div>
 
@@ -160,6 +205,15 @@ const Tools = () => {
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
                             </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/ngen-datastream/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
+                            </a>
                         </div>
                     </div>
 
@@ -185,6 +239,15 @@ const Tools = () => {
                             >
                                 <i className="fab fa-github"></i>
                                 <span>View Source Code</span>
+                            </a>
+                            <a 
+                              href="https://github.com/CIROH-UA/ngiab-cal/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-exclamation-circle"></i>
+                                <span>Open Issue</span>
                             </a>
                         </div>
                     </div>

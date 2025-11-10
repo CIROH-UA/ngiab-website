@@ -95,7 +95,7 @@
       @apply text-gray-800 mb-4 text-xl md:text-lg ;
   }
   .tool-links {
-      @apply absolute inset-0 bg-black/60 opacity-0 transition-all duration-300 flex items-center justify-center;
+      @apply absolute inset-0 bg-black/60 opacity-0 transition-all duration-300 flex flex-col items-center justify-center gap-4;
       backdrop-filter: blur(2px);
   }
   .tool-card:hover .tool-links {
