@@ -182,41 +182,6 @@ const Tools = () => {
                         </div>
                     </div>
 
-                    {/* NGEN-DataStream */}
-                    <div 
-                      className="tool-card group"
-                    >
-                        <div className="tool-image-wrapper">
-                            <img className="tool-image" src="assets/img/tool/ngen_datastream.jpeg" alt="DataStream Tool" />
-                            <div className="tool-overlay"></div>
-                            <div className="tool-badge">Workflow Orchestration</div>
-                        </div>
-                        <div className="tool-content">
-                            <h4 className="tool-title">NGEN-DataStream</h4>
-                            <p className="tool-description">Streamline your hydrologic simulations with our automated workflow orchestration tool.</p>
-                        </div>
-                        <div className="tool-links">
-                            <a 
-                              href="https://github.com/CIROH-UA/ngen-datastream" 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="tool-link"
-                            >
-                                <i className="fab fa-github"></i>
-                                <span>View Source Code</span>
-                            </a>
-                            <a 
-                              href="https://github.com/CIROH-UA/ngen-datastream/issues/new" 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="tool-link"
-                            >
-                                <i className="fas fa-comment-dots"></i>
-                                <span>Feedback</span>
-                            </a>
-                        </div>
-                    </div>
-
                     {/* NGIAB-Calibration */}
                     <div 
                       className="tool-card group"

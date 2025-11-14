@@ -12,89 +12,107 @@ const NRDS = () => {
         <div className="max-w-4xl mx-auto mb-12">
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {/* Forcing Processor */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-              <div className="text-center mb-4">
-                <i className="fas fa-cogs text-4xl text-primary mb-4"></i>
-                <h4 className="tool-title text-xl mb-2">Forcing Processor</h4>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a 
-                  href="https://github.com/CIROH-UA/forcingprocessor" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fab fa-github"></i>
-                  <span>View Source Code</span>
-                </a>
-                <a 
-                  href="https://github.com/CIROH-UA/forcingprocessor/issues/new" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fas fa-comment-dots"></i>
-                  <span>Feedback</span>
-                </a>
-              </div>
-            </div>
+            {/* Forcing Processor*/}
+                    <div 
+                      className="tool-card group"
+                    >
+                        <div className="tool-image-wrapper">
+                            <img className="tool-image" src="assets/img/tool/forcingprocessor.png" alt="Data Preprocess Tool" />
+                            <div className="tool-overlay"></div>
+                        </div>
+                        <div className="tool-content">
+                            <h4 className="tool-title">Forcing Processor</h4>
+                            <p className="tool-description">Tool to prepare standardized hydrologic forcing data for NexGen simulations.</p>
+                        </div>
+                        <div className="tool-links">
+                            <a 
+                              href="https://github.com/CIROH-UA/forcingprocessor" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fab fa-github"></i>
+                                <span>View Source Code</span>
+                            </a>
+                             <a 
+                              href="https://github.com/CIROH-UA/forcingprocessor/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
+                            </a>
+                        </div>
+                    </div>
 
             {/* Datastream CLI */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-              <div className="text-center mb-4">
-                <i className="fas fa-terminal text-4xl text-primary mb-4"></i>
-                <h4 className="tool-title text-xl mb-2">Datastream CLI</h4>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a 
-                  href="https://github.com/CIROH-UA/datastreamcli" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fab fa-github"></i>
-                  <span>View Source Code</span>
-                </a>
-                <a 
-                  href="https://github.com/CIROH-UA/datastreamcli/issues/new" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fas fa-comment-dots"></i>
-                  <span>Feedback</span>
-                </a>
-              </div>
-            </div>
+            <div 
+                      className="tool-card group"
+                    >
+                        <div className="tool-image-wrapper">
+                            <img className="tool-image" src="assets/img/tool/datastreamcli.png" alt="Data Preprocess Tool" />
+                            <div className="tool-overlay"></div>
+                        </div>
+                        <div className="tool-content">
+                            <h4 className="tool-title">Datastream CLI</h4>
+                            <p className="tool-description">Standalone CLI tool to automate the complete NexGen workflow.</p>
+                        </div>
+                        <div className="tool-links">
+                            <a 
+                              href="https://github.com/CIROH-UA/datastreamcli" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fab fa-github"></i>
+                                <span>View Source Code</span>
+                            </a>
+                             <a 
+                              href="https://github.com/CIROH-UA/datastreamcli/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
+                            </a>
+                        </div>
+                    </div>
 
             {/* NGEN-DataStream */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300">
-              <div className="text-center mb-4">
-                <i className="fas fa-stream text-4xl text-primary mb-4"></i>
-                <h4 className="tool-title text-xl mb-2">NGEN-DataStream</h4>
-              </div>
-              <div className="flex flex-col gap-3">
-                <a 
-                  href="https://github.com/CIROH-UA/ngen-datastream" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fab fa-github"></i>
-                  <span>View Source Code</span>
-                </a>
-                <a 
-                  href="https://github.com/CIROH-UA/ngen-datastream/issues/new" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="tool-link text-gray-700 hover:text-primary transition-colors duration-300 flex items-center gap-2 justify-center"
-                >
-                  <i className="fas fa-comment-dots"></i>
-                  <span>Feedback</span>
-                </a>
-              </div>
-            </div>
+            <div 
+                      className="tool-card group"
+                    >
+                        <div className="tool-image-wrapper">
+                            <img className="tool-image" src="assets/img/tool/nrds.png" alt="Data Preprocess Tool" />
+                            <div className="tool-overlay"></div>
+                        </div>
+                        <div className="tool-content">
+                            <h4 className="tool-title">NGEN-DataStream</h4>
+                            <p className="tool-description">Daily NextGen simulations in AWS with community contributed configurations.</p>
+                        </div>
+                        <div className="tool-links">
+                            <a 
+                              href="https://github.com/CIROH-UA/ngen-datastream" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fab fa-github"></i>
+                                <span>View Source Code</span>
+                            </a>
+                             <a 
+                              href="https://github.com/CIROH-UA/datastreamcli/issues/new" 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="tool-link"
+                            >
+                                <i className="fas fa-comment-dots"></i>
+                                <span>Feedback</span>
+                            </a>
+                        </div>
+                    </div>
           </div>
 
           {/* Resources Section */}
