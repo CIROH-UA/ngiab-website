@@ -103,7 +103,7 @@ const NRDS = () => {
                                 <span>View Source Code</span>
                             </a>
                              <a 
-                              href="https://github.com/CIROH-UA/datastreamcli/issues/new" 
+                              href="https://github.com/CIROH-UA/ngen-datastream/issues/new" 
                               target="_blank" 
                               rel="noopener noreferrer" 
                               className="tool-link"
