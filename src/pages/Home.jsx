@@ -10,7 +10,6 @@ import Documentation from '../components/home/documentation';
 import About from '../components/home/about';
 import Hero from '../components/home/hero';
 import Tools from '../components/home/tools';
-import NRDS from '../components/home/nrds';
 import Partner from '../components/home/partner';
 import Contact from '../components/home/contact';
 import Blog from '../components/home/blog';
@@ -29,9 +28,6 @@ const Home = () => {
       
       {/* Tools Section (Six tools linked to their respective repositories) */}
       <Tools />
-
-      {/* NextGen Research DataStream Section */}
-      <NRDS />
 
       {/* Documentation & Resources Section (has DocuHub and NGIAB 101 training module) */}
       <Documentation />
