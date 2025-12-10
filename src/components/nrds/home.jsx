@@ -19,24 +19,6 @@ const NRDS = () => {
             NRDS democratizes forcings, outputs, and configurations so the community can iterate,
             validate, and operationalize better streamflow predictions.
           </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-10">
-            <a
-              href="https://datastream.ciroh.org/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary px-10 py-3 bg-white text-primary hover:bg-white/90"
-            >
-              Explore NRDS
-            </a>
-            <a
-              href="https://github.com/CIROH-UA/ngen-datastream/blob/main/docs/nrds/CONTRIBUTE.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary px-10 py-3 border border-white/50 bg-transparent hover:bg-white/10"
-            >
-              Contribute Configurations
-            </a>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
@@ -45,11 +27,13 @@ const NRDS = () => {
               label: 'Daily Archive',
               value: 'Automated',
               description: 'Automated generation of NextGen forcings and simulations in AWS',
+              link: 'https://datastream.ciroh.org/index.html',
             },
             {
               label: 'Open Configuration',
               value: 'Community-led',
               description: 'Help improve streamflow predictions by updating our realization files',
+              link: 'https://github.com/CIROH-UA/ngen-datastream/blob/main/docs/nrds/CONTRIBUTE.md',
             },
             {
               label: 'Cloud Native',
@@ -58,12 +42,19 @@ const NRDS = () => {
             },
           ].map((stat, idx) => (
             <div
-              key={idx}
-              className="bg-white/10 border border-white/10 rounded-2xl p-6 text-center backdrop-blur-sm"
-            >
+            key={idx}
+            className="relative bg-white/10 border border-white/10 rounded-2xl p-6 text-center
+                       backdrop-blur-sm cursor-pointer transform transition-all duration-200
+                       hover:scale-[1.03] hover:bg-white/20 hover:border-white/20"
+          >
+
+              {stat.link && (
+                <a href={stat.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0"/>
+              )}
               <p className="text-sm uppercase tracking-widest text-white/60 mb-2">{stat.label}</p>
               <p className="text-3xl font-bold mb-2">{stat.value}</p>
               <p className="text-white/75 text-sm">{stat.description}</p>
+  
             </div>
           ))}
         </div>
@@ -155,6 +146,10 @@ const NRDS = () => {
               <i className="fas fa-database text-2xl text-teal-400 mt-1" />
               <div className="ml-3">
                 <h5 className="font-semibold text-white mb-1">Daily Output Data</h5>
+                <p className="mb-1">
+                Access automatically generated NextGen forcings and routed outputs.
+                Updated daily to support research workflows and operational hydrologic modeling.
+              </p>
                 <a
                   href="https://datastream.ciroh.org/index.html"
                   target="_blank"
@@ -169,6 +164,10 @@ const NRDS = () => {
               <i className="fas fa-location-dot text-2xl text-teal-400 mt-1" />
               <div className="ml-3">
                 <h5 className="font-semibold text-white mb-1">NextGen Visualizer</h5>
+                 <p className="mb-1">
+                Explore streamflow predictions and forecast performance
+                through an interactive map-based interface. Ideal for browsing model results.
+              </p>
                 <a
                   href="https://nrds.ciroh.org"
                   target="_blank"
@@ -183,7 +182,8 @@ const NRDS = () => {
               <i className="fas fa-hand-holding-heart text-2xl text-teal-400 mt-1" />
               <div className="ml-1">
                 <h5 className="font-semibold text-white mb-1">Contribute to NextGen Configuration</h5>
-                <p>Help improve streamflow predictions by editing community configs.</p>
+                <p>Help improve streamflow predictions by updating parameters, calibration values, or realization files. Contributions help improve our
+          community-driven hydrologic modeling ecosystem.</p>
                 <a
                   href="https://github.com/CIROH-UA/ngen-datastream/blob/main/docs/nrds/CONTRIBUTE.md"
                   target="_blank"
@@ -198,7 +198,9 @@ const NRDS = () => {
               <i className="fas fa-comments text-2xl text-teal-400 mt-1" />
               <div>
                 <h5 className="font-semibold text-white mb-1">Join the Discussion</h5>
-                <p>Share ideas, ask questions, or collaborate with the NRDS community.</p>
+                <p>Engage with the NRDS discussions, propose enhancements,
+                report issues, or collaborate on new workflows. A space for both 
+                developers and researchers.</p>
                 <a
                   href="https://github.com/CIROH-UA/ngen-datastream/discussions"
                   target="_blank"
