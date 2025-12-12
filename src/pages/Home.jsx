@@ -7,6 +7,7 @@ import 'aos/dist/aos.css';
 import Team from '../components/home/team';
 import Impact from '../components/home/impact';
 import Documentation from '../components/home/documentation';
+import Demo from '../components/home/ngiab-demo';
 import About from '../components/home/about';
 import Hero from '../components/home/hero';
 import Tools from '../components/home/tools';
@@ -31,6 +32,9 @@ const Home = () => {
 
       {/* Documentation & Resources Section (has DocuHub and NGIAB 101 training module) */}
       <Documentation />
+      
+      {/* NGIAB Demo Section (5 minute walkthrough video) */}
+      <Demo />
 
       {/* Docker Pull Counter Section (gives real time Docker pull count using Vercel api) */}
       <Impact />
