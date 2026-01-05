@@ -21,7 +21,7 @@ const Team = () => {
   const teamMembers = [
     {
       name: "Arpita Patel",
-      role: "DevOps Manager and Enterprise Architect",
+      role: "Assistant Director of DevOps and IT",
       image: "assets/img/team/Arpita-Patel.jpg",
       github: "https://github.com/arpita0911patel",
       linkedin: "https://www.linkedin.com/in/arpita0911patel",
@@ -101,7 +101,7 @@ const Team = () => {
     },
     {
       name: "Trupesh Patel",
-      role: "Software Engineer II",
+      role: "High Performance Computing Systems Administrator II",
       image: "assets/img/team/Trupesh-Patel.jpg",
       github: "https://github.com/TrupeshKumarPatel",
       linkedin: "https://www.linkedin.com/in/trupeshkumarpatel",
@@ -110,7 +110,7 @@ const Team = () => {
     },
     {
       name: "Giovanni Romero",
-      role: "HydroInfomatics Engineer",
+      role: "Hydroinformatics Engineer",
       image: "assets/img/team/Giovanni-Romero.png",
       github: "https://github.com/romer8",
       linkedin: "https://www.linkedin.com/in/elkin-giovanni-romero-bustamante-b834b5a8",
@@ -164,12 +164,12 @@ const Team = () => {
     },
     {
       name: "Md Shahabul Alam",
-      role: "Research Scientist",
+      role: "Assistant Professor at University of West Florida",
       image: "assets/img/team/Md-Shahabul-Alam.jpg",
       github: "https://github.com/shahab122",
       linkedin: "https://www.linkedin.com/in/md-shahabul-alam/",
       email: "malam24@ua.edu",
-      department: "awi"
+      department: ""
     },
     {
       name: "Sai Harsha Vemula",
@@ -209,7 +209,7 @@ const Team = () => {
     },
     {
       name: "Quinn Lee",
-      role: "Research Assistant",
+      role: "Programmer Analyst",
       image: "assets/img/team/Quinn-Lee.jpg",
       github: "https://github.com/quinnylee",
       linkedin: "https://www.linkedin.com/in/quinn-y-lee/",
@@ -224,6 +224,15 @@ const Team = () => {
       linkedin: "",
       email: "ikminor1@crimson.ua.edu",
       department: "cs"
+    },
+    {
+      name: "Sonam Lama",
+      role: "Programmer Analyst",
+      image: "assets/img/team/Sonam-Lama.jpeg",
+      github: "https://github.com/slama0077",
+      linkedin: "https://www.linkedin.com/in/sonam-lama-139821209/",
+      email: "slama@.ua.edu",
+      department: "awi"
     },
     {
       name: "Steven J. Burian",
