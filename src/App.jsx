@@ -8,7 +8,7 @@ import RedirSurvey from './pages/RedirSurvey';
 
 const App = () => {
   return (
-    <Router basename={import.meta.env.VITE_BASE_URL || '/'}>
+    <Router>
         <Header />
         <main>
           <Routes>
