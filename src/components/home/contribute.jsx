@@ -7,7 +7,7 @@ const Contribute = () => {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
                     <h2 className="section-heading">Contribute</h2>
-                    <h3 className="section-subheading">Help expand NextGen In A Box by contributing your models</h3>
+                    <h3 className="section-subheading">Ways community can contribute to NGIAB</h3>
                 </div>
 
                 {/* Contribute Models Section */}
@@ -17,7 +17,7 @@ const Contribute = () => {
                     <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary opacity-5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
                     
                     <div className="text-center mb-12 relative">
-                        <h3 className="text-3xl font-bold text-primary mb-5">Contribute Models to NGIAB</h3>
+                        <h3 className="text-3xl font-bold text-primary mb-5">Contribute Model to NGIAB</h3>
                         <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                             Submit BMI-compliant models integration request through our model integration issue form.
                         </p>
