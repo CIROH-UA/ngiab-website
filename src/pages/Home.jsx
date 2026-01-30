@@ -15,6 +15,7 @@ import Partner from '../components/home/partner';
 import Contact from '../components/home/contact';
 import Blog from '../components/home/blog';
 import VideoTestimonial from '../components/home/VideoTestimonial';
+import Contribute from '../components/home/contribute';
 
 const Home = () => {
 
@@ -35,6 +36,9 @@ const Home = () => {
       
       {/* NGIAB Demo Section (5 minute walkthrough video) */}
       <Demo />
+
+      {/* Contribute Section (How to contribute to NGIAB) */}
+      <Contribute />
 
       {/* Docker Pull Counter Section (gives real time Docker pull count using Vercel api) */}
       <Impact />
