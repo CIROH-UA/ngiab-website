@@ -27,6 +27,13 @@ export default defineConfig(() => {
     },
     server: {
       port: 3000,
+      proxy: {
+        '/pepy-api': {
+          target: process.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech',
+          changeOrigin: true,
+          rewrite: (incomingPath) => incomingPath.replace(/^\/pepy-api/, ''),
+        },
+      },
     },
   };
 });

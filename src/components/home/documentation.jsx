@@ -49,12 +49,12 @@ const Documentation = () => {
               {/* Left side: Text and links */}
               <div className="w-full md:w-1/4 order-2 md:order-1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                 <div className="mb-12">
-                  <h3 className="text-3xl font-bold text-primary mb-5">CIROH DocuHub</h3>
-                  <a href="https://docs.ciroh.org/" 
+                  <h3 className="text-3xl font-bold text-primary mb-5">CIROH Hub</h3>
+                  <a href="https://hub.ciroh.org/" 
                      target="_blank" 
                      rel="noopener noreferrer" 
                      className="text-primary/80 hover:text-primary border-b border-primary/20 hover:border-primary transition-colors duration-200">
-                    docs.ciroh.org
+                    hub.ciroh.org
                     <i className="fas fa-arrow-up-right-from-square text-xs ml-1"></i>
                   </a>
                 </div>
@@ -67,7 +67,7 @@ const Documentation = () => {
                       <h4 className="font-semibold text-gray-800 ml-3">Documentation</h4>
                     </div>
                     <p className="text-gray-600 mb-2 pl-11">Step-by-step guides for running NGIAB.</p>
-                    <a href="https://docs.ciroh.org/docs/products/ngiab/" className="text-primary font-medium hover:underline pl-11 inline-block" target="_blank" rel="noopener noreferrer">
+                    <a href="https://hub.ciroh.org/docs/products/ngiab/" className="text-primary font-medium hover:underline pl-11 inline-block" target="_blank" rel="noopener noreferrer">
                       View Documentation 
                     </a>
                   </div>
@@ -93,7 +93,7 @@ const Documentation = () => {
                       <h4 className="font-semibold text-gray-800 ml-3">Infrastructure Access</h4>
                     </div>
                     <p className="text-gray-600 mb-2 pl-11">Access CIROH computing resources.</p>
-                    <a href="https://docs.ciroh.org/docs/services/access" className="text-primary font-medium hover:underline pl-11 inline-block" target="_blank" rel="noopener noreferrer">
+                    <a href="https://hub.ciroh.org/docs/services/access" className="text-primary font-medium hover:underline pl-11 inline-block" target="_blank" rel="noopener noreferrer">
                       Request Access 
                     </a>
                   </div>

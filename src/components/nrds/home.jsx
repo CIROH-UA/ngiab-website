@@ -134,6 +134,49 @@ const NRDS = () => {
           </div>
         </div>
 
+        <div className="mt-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="250">
+          <h3 className="text-center text-3xl font-semibold mb-8">Data Visualizers</h3>
+          <p className="text-center text-white/75 max-w-3xl mx-auto mb-12">
+            Explore streamflow predictions and community hydrofabric data through interactive visualization tools.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                title: 'NRDS Visualizer',
+                description: 'Interactive map-based interface to explore streamflow predictions and forecast performance.',
+                icon: 'fas fa-map-marked-alt',
+                link: 'https://nrds.ciroh.org',
+              },
+              {
+                title: 'Community Hydrofabric Explorer',
+                description: 'Browse and visualize the community hydrofabric geospatial data and stream network.',
+                icon: 'fas fa-project-diagram',
+                link: 'https://communityhydrofabric.s3.us-east-1.amazonaws.com/index.html',
+              },
+            ].map((viz, idx) => (
+              <a
+                key={idx}
+                href={viz.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-8 shadow-lg
+                           transform transition-all duration-200 hover:scale-[1.03] hover:shadow-2xl 
+                           cursor-pointer"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay={300 + idx * 100}
+              >
+                <div className="text-center">
+                  <i className={`${viz.icon} text-5xl text-teal-500/85 mb-4`} />
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3">{viz.title}</h4>
+                  <p className="text-gray-700">{viz.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
         <div
           className="mt-16 bg-white/10 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
           data-aos="fade-up"
@@ -157,24 +200,6 @@ const NRDS = () => {
                   className="text-secondary hover:underline break-all"
                 >
                   https://datastream.ciroh.org/index.html
-                </a>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row md:items-start gap-4">
-              <i className="fas fa-location-dot text-2xl text-teal-400 mt-1" />
-              <div className="ml-3">
-                <h5 className="font-semibold text-white mb-1">NextGen Visualizer</h5>
-                 <p className="mb-1">
-                Explore streamflow predictions and forecast performance
-                through an interactive map-based interface. Ideal for browsing model results.
-              </p>
-                <a
-                  href="https://nrds.ciroh.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-secondary hover:underline break-all"
-                >
-                  https://nrds.ciroh.org
                 </a>
               </div>
             </div>

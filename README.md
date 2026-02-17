@@ -6,6 +6,11 @@ This project is built with [React](https://reactjs.org/) and [Vite](https://vite
 
 In the project directory, you can run:
 
+### `npm install`
+
+Installs all the dependencies required for the project.\
+Run this command first after cloning the repository to set up the project.
+
 ### `npm start`
 
 Runs the app in the development mode.\
