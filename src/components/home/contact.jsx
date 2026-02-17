@@ -18,13 +18,13 @@ const Contact = () => {
                         <ul class="space-y-4">
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle text-primary mr-3"></i>
-                                <a href="https://docs.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Learn about the NGIAB platform on DocuHub
+                                <a href="https://hub.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                    Learn about the NGIAB platform on CIROH Hub.
                                 </a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle text-primary mr-3"></i>
-                                <a href="https://docs.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/ngiabOfficeHours" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                <a href="https://hub.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/ngiabOfficeHours" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
                                     Join the NextGen Community Office Hours
                                 </a>
                             </li>

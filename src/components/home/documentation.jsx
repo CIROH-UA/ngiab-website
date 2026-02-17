@@ -142,7 +142,7 @@ const Documentation = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto relative">
               {/* Additional Resources */}
               <div className="space-y-6" data-aos="fade-up" data-aos-duration="1000">
-                <a href="https://docs.ciroh.org/training-NGIAB-101/reference.html#glossary" 
+                <a href="https://hub.ciroh.org/training-NGIAB-101/reference.html#glossary" 
                    className="group block bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-100"
                    target="_blank" 
                    rel="noopener noreferrer">
@@ -157,7 +157,7 @@ const Documentation = () => {
                   </div>
                 </a>
 
-                <a href="https://docs.ciroh.org/training-NGIAB-101/troubleshooting.html" 
+                <a href="https://hub.ciroh.org/training-NGIAB-101/troubleshooting.html" 
                    className="group block bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-gray-100"
                    target="_blank" 
                    rel="noopener noreferrer">
@@ -179,7 +179,7 @@ const Documentation = () => {
                   <p className="text-white/80 mb-6">
                     Access our training module and begin your journey with NextGen In A Box
                   </p>
-                  <a href="https://docs.ciroh.org/training-NGIAB-101/" 
+                  <a href="https://hub.ciroh.org/training-NGIAB-101/" 
                      className="inline-flex items-center justify-center space-x-2 bg-white text-primary px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-lg hover:shadow-xl"
                      target="_blank" 
                      rel="noopener noreferrer">

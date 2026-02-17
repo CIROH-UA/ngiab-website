@@ -145,7 +145,7 @@ const Hero = () => {
                     </HashLink>
                     <a 
                       className="btn-primary text-xl px-12 py-4" 
-                      href="http://docs.ciroh.org/training-NGIAB-101/" 
+                      href="https://hub.ciroh.org/training-NGIAB-101/" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
