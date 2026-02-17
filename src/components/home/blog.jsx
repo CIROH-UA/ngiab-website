@@ -10,7 +10,7 @@ const Blog = () => {
         </div>
         <div className="flex justify-center mb-8">
           <a
-            href="https://docs.ciroh.org/blog/tags/ngiab"
+            href="https://hub.ciroh.org/blog/tags/ngiab"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-xl px-12 py-4 mx-3"
@@ -18,7 +18,7 @@ const Blog = () => {
             Blog Updates
           </a>
           <a
-            href="https://docs.ciroh.org/news"
+            href="https://hub.ciroh.org/news"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-xl px-12 py-4 mx-4"
