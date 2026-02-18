@@ -110,13 +110,16 @@ const DockerPullCounter = () => {
     };
 
     const fetchPepyStats = async () => {
+      const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
+
+      if (!token) {
+        console.error('Missing Pepy API key in environment variables.');
+        setPepyError('Failed to fetch package download stats');
+        setPepyLoading(false);
+        return;
+      }
+
       try {
-        const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
-
-        if (!token) {
-          throw new Error('Missing Pepy API key in environment variables.');
-        }
-
         const response = await fetch(`/pepy-api/api/v2/projects/${PACKAGE_NAME}`, {
           headers: {
             'X-API-Key': token,
@@ -176,32 +179,77 @@ const DockerPullCounter = () => {
         const updatedMatch = flattened.match(/Last updated:\s*([^|<]+?)\s*\|\s*Data fetched in\s*([0-9.]+s)/i);
         const completionMatch = flattened.match(/(\d{4}-\d{2}-\d{2})\s*(\d+)\s*\/\s*(\d+)\s*\(([\d.]+)%\)/);
 
+        let lastUpdated = 'N/A';
+        let dataFetchDuration = 'N/A';
+        let latestDate = 'N/A';
+        let latestComplete = 'N/A';
+        let latestTotal = 'N/A';
+        let latestPercent = 'N/A';
+
+        if (updatedMatch && updatedMatch[1] && updatedMatch[2]) {
+          lastUpdated = updatedMatch[1].trim();
+          dataFetchDuration = updatedMatch[2].trim();
+        } else {
+          console.warn('Dashboard HTML parsing warning: could not extract "Last updated" and data fetch duration from status dashboard.');
+        }
+
+        if (completionMatch && completionMatch[1] && completionMatch[2] && completionMatch[3] && completionMatch[4]) {
+          latestDate = completionMatch[1];
+          latestComplete = completionMatch[2];
+          latestTotal = completionMatch[3];
+          latestPercent = completionMatch[4];
+        } else {
+          console.warn('Dashboard HTML parsing warning: could not extract completion statistics from status dashboard.');
+        }
+
         setDashboardInfo({
           loading: false,
-          lastUpdated: updatedMatch?.[1]?.trim() || '',
-          dataFetchDuration: updatedMatch?.[2]?.trim() || '',
-          latestDate: completionMatch?.[1] || '',
-          latestComplete: completionMatch?.[2] || '',
-          latestTotal: completionMatch?.[3] || '',
-          latestPercent: completionMatch?.[4] || '',
+          lastUpdated,
+          dataFetchDuration,
+          latestDate,
+          latestComplete,
+          latestTotal,
+          latestPercent,
         });
       } catch (fetchError) {
         console.error('Error fetching dashboard info:', fetchError);
         setDashboardInfo((previous) => ({ ...previous, loading: false }));
+        // Rethrow so the polling scheduler can apply backoff on failures
+        throw fetchError;
       }
     };
 
-    fetchDockerCount();
-    fetchPepyStats();
-    fetchDashboardInfo();
+    const BASE_POLLING_INTERVAL = 300000; // 5 minutes
+    const MAX_POLLING_INTERVAL = 3600000; // 60 minutes cap for backoff
+    let currentInterval = BASE_POLLING_INTERVAL;
+    let timeoutId;
 
-    const interval = setInterval(() => {
-      fetchDockerCount();
-      fetchPepyStats();
-      fetchDashboardInfo();
-    }, 300000);
+    const runAllFetches = async () => {
+      try {
+        await Promise.all([
+          fetchDockerCount(),
+          fetchPepyStats(),
+          fetchDashboardInfo(),
+        ]);
+        // On success, reset to the base polling interval
+        currentInterval = BASE_POLLING_INTERVAL;
+      } catch (error) {
+        // On failure, increase the delay with exponential backoff up to the max
+        console.error('Error during periodic fetch:', error);
+        currentInterval = Math.min(currentInterval * 2, MAX_POLLING_INTERVAL);
+      } finally {
+        timeoutId = setTimeout(runAllFetches, currentInterval);
+      }
+    };
 
-    return () => clearInterval(interval);
+    // Initial fetch and schedule subsequent runs
+    runAllFetches();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   return (
