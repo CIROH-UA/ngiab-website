@@ -6,6 +6,10 @@ This project is built with [React](https://reactjs.org/) and [Vite](https://vite
 
 In the project directory, you can run:
 
+### `cd ngiab-website`
+
+Navigate to the project directory.
+
 ### `npm install`
 
 Installs all the dependencies required for the project.\
@@ -30,6 +34,16 @@ Your app is ready to be deployed!
 ### `npm run serve`
 
 Previews the production build locally.
+
+## Quick Commands Reference
+
+```bash
+cd ngiab-website
+npm install
+npm start
+npm run build
+npm run serve
+```
 
 ## Learn More
 
