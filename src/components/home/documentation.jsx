@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import docuhubVideo from "/assets/video/ngiab-docuhub.mp4";
+import docuhubVideo from "/assets/video/ciroh-hub-ngiab.mp4";
 import 'aos/dist/aos.css';
 
 const Documentation = () => {
