@@ -55,7 +55,12 @@ npm run serve
 - Visit [PePy.tech](https://pepy.tech)
 - Search for "ngiab-data-preprocess"
 - PePy.tech provides free download statistics for Python packages
-- You can view the stats at: https://pepy.tech/projects/ngiab-data-preprocess
+- You can view the public stats at: https://pepy.tech/projects/ngiab-data-preprocess
+- To generate an API token:
+  - Create an account or sign in at [PePy.tech](https://pepy.tech)
+  - Open your user menu (top‑right) and go to **Account** → **API tokens** (or visit `https://pepy.tech/account/api` if available)
+  - Click **Create new token** (or similar), give it a name, and copy the generated token value
+  - Paste this value into `VITE_PEPY_TECH_TOKEN` in your `.env` file
 
 **Configuration**:
 ```env
