@@ -211,20 +211,42 @@ const DockerPullCounter = () => {
       } catch (fetchError) {
         console.error('Error fetching dashboard info:', fetchError);
         setDashboardInfo((previous) => ({ ...previous, loading: false }));
+        // Rethrow so the polling scheduler can apply backoff on failures
+        throw fetchError;
       }
     };
 
-    fetchDockerCount();
-    fetchPepyStats();
-    fetchDashboardInfo();
+    const BASE_POLLING_INTERVAL = 300000; // 5 minutes
+    const MAX_POLLING_INTERVAL = 3600000; // 60 minutes cap for backoff
+    let currentInterval = BASE_POLLING_INTERVAL;
+    let timeoutId;
 
-    const interval = setInterval(() => {
-      fetchDockerCount();
-      fetchPepyStats();
-      fetchDashboardInfo();
-    }, 300000);
+    const runAllFetches = async () => {
+      try {
+        await Promise.all([
+          fetchDockerCount(),
+          fetchPepyStats(),
+          fetchDashboardInfo(),
+        ]);
+        // On success, reset to the base polling interval
+        currentInterval = BASE_POLLING_INTERVAL;
+      } catch (error) {
+        // On failure, increase the delay with exponential backoff up to the max
+        console.error('Error during periodic fetch:', error);
+        currentInterval = Math.min(currentInterval * 2, MAX_POLLING_INTERVAL);
+      } finally {
+        timeoutId = setTimeout(runAllFetches, currentInterval);
+      }
+    };
 
-    return () => clearInterval(interval);
+    // Initial fetch and schedule subsequent runs
+    runAllFetches();
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, []);
 
   return (
