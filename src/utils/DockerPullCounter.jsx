@@ -110,13 +110,16 @@ const DockerPullCounter = () => {
     };
 
     const fetchPepyStats = async () => {
+      const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
+
+      if (!token) {
+        console.error('Missing Pepy API key in environment variables.');
+        setPepyError('Failed to fetch package download stats');
+        setPepyLoading(false);
+        return;
+      }
+
       try {
-        const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
-
-        if (!token) {
-          throw new Error('Missing Pepy API key in environment variables.');
-        }
-
         const response = await fetch(`/pepy-api/api/v2/projects/${PACKAGE_NAME}`, {
           headers: {
             'X-API-Key': token,
