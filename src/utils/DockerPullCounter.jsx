@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 
-const PACKAGE_NAME = 'ngiab-data-preprocess';
+const PACKAGE_NAME = 'NGIAB-data-preprocess';
 const TRACKED_VERSIONS = ['4.6.7', '4.6.6', '4.6.5', '4.6.4', '4.6.3'];
 const DAYS_IN_THREE_MONTHS = 90;
 const PEPY_PAGE_URL = 'https://pepy.tech/projects/ngiab-data-preprocess?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=4.6.7%2C4.6.6%2C4.6.5%2C4.6.4%2C4.6.3';
