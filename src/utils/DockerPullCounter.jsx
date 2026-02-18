@@ -176,14 +176,37 @@ const DockerPullCounter = () => {
         const updatedMatch = flattened.match(/Last updated:\s*([^|<]+?)\s*\|\s*Data fetched in\s*([0-9.]+s)/i);
         const completionMatch = flattened.match(/(\d{4}-\d{2}-\d{2})\s*(\d+)\s*\/\s*(\d+)\s*\(([\d.]+)%\)/);
 
+        let lastUpdated = 'N/A';
+        let dataFetchDuration = 'N/A';
+        let latestDate = 'N/A';
+        let latestComplete = 'N/A';
+        let latestTotal = 'N/A';
+        let latestPercent = 'N/A';
+
+        if (updatedMatch && updatedMatch[1] && updatedMatch[2]) {
+          lastUpdated = updatedMatch[1].trim();
+          dataFetchDuration = updatedMatch[2].trim();
+        } else {
+          console.warn('Dashboard HTML parsing warning: could not extract "Last updated" and data fetch duration from status dashboard.');
+        }
+
+        if (completionMatch && completionMatch[1] && completionMatch[2] && completionMatch[3] && completionMatch[4]) {
+          latestDate = completionMatch[1];
+          latestComplete = completionMatch[2];
+          latestTotal = completionMatch[3];
+          latestPercent = completionMatch[4];
+        } else {
+          console.warn('Dashboard HTML parsing warning: could not extract completion statistics from status dashboard.');
+        }
+
         setDashboardInfo({
           loading: false,
-          lastUpdated: updatedMatch?.[1]?.trim() || '',
-          dataFetchDuration: updatedMatch?.[2]?.trim() || '',
-          latestDate: completionMatch?.[1] || '',
-          latestComplete: completionMatch?.[2] || '',
-          latestTotal: completionMatch?.[3] || '',
-          latestPercent: completionMatch?.[4] || '',
+          lastUpdated,
+          dataFetchDuration,
+          latestDate,
+          latestComplete,
+          latestTotal,
+          latestPercent,
         });
       } catch (fetchError) {
         console.error('Error fetching dashboard info:', fetchError);
