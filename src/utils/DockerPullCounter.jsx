@@ -112,8 +112,11 @@ const DockerPullCounter = () => {
     const fetchPepyStats = async () => {
       const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
       const baseUrl = import.meta.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech';
-      const pepyBase = import.meta.env.DEV ? '/pepy-api' : baseUrl;
-      const pepyApiBase = pepyBase.replace(/\/+$/, '');
+      
+      // Use dev proxy in development, direct API call in production
+      const apiEndpoint = import.meta.env.DEV 
+        ? `/pepy-api/api/v2/projects/${PACKAGE_NAME}`
+        : `${baseUrl}/api/v2/projects/${PACKAGE_NAME}`;
 
       if (!token) {
         console.error('Missing Pepy API key in environment variables.');
@@ -123,7 +126,7 @@ const DockerPullCounter = () => {
       }
 
       try {
-        const response = await fetch(`${pepyApiBase}/api/v2/projects/${PACKAGE_NAME}`, {
+        const response = await fetch(apiEndpoint, {
           headers: {
             'X-API-Key': token,
           },

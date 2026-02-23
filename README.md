@@ -53,20 +53,22 @@ npm run serve
 
 **How to Get the API Key**:
 - Visit [PePy.tech](https://pepy.tech)
-- Search for "ngiab-data-preprocess"
-- PePy.tech provides free download statistics for Python packages
-- You can view the public stats at: https://pepy.tech/projects/ngiab-data-preprocess
-- To generate an API token:
-  - Create an account or sign in at [PePy.tech](https://pepy.tech)
-  - Open your user menu (top‑right) and go to **Account** → **API tokens** (or visit `https://pepy.tech/account/api` if available)
-  - Click **Create new token** (or similar), give it a name, and copy the generated token value
-  - Paste this value into `VITE_PEPY_TECH_TOKEN` in your `.env` file
+- Create an account or sign in at [PePy.tech](https://pepy.tech)
+- Open your user menu (top‑right) and go to **Account** → **API tokens**
+- Click **Create new token**, give it a name, and copy the generated token value
+- Add this value to your `.env` file (for local development) or GitHub repository secrets (for deployment)
 
 **Configuration**:
 ```env
 VITE_PEPY_TECH_TOKEN=<Your PePy.tech API Token>
 VITE_PEPY_TECH_BASE_URL=https://api.pepy.tech
 ```
+
+**GitHub Repository Secrets** (for CI/CD deployments):
+1. Go to repository Settings → Secrets and variables → Actions
+2. Add the following secrets:
+   - `VITE_PEPY_TECH_TOKEN` - Your PePy.tech API token
+   - `VITE_PEPY_TECH_BASE_URL` - `https://api.pepy.tech`
 
 **What it tracks**:
 - Version-specific downloads (4.6.7, 4.6.6, 4.6.5, 4.6.4, 4.6.3)
