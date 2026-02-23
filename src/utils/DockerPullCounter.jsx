@@ -111,7 +111,6 @@ const DockerPullCounter = () => {
 
     const fetchPepyStats = async () => {
       const baseUrl = import.meta.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech';
-      const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
 
       // Use proxy for local dev/preview; use static build artifact for deployed production (avoids CORS)
       const isLocalPreview = import.meta.env.PROD && typeof window !== 'undefined' && window.location.hostname === 'localhost';
@@ -127,15 +126,7 @@ const DockerPullCounter = () => {
         if (useStaticBuildStats) {
           response = await fetch(staticStatsPath, { cache: 'no-store' });
         } else {
-          if (!token) {
-            throw new Error('Missing Pepy API key in environment variables.');
-          }
-
-          response = await fetch(apiEndpoint, {
-            headers: {
-              'X-API-Key': token,
-            },
-          });
+          response = await fetch(apiEndpoint);
         }
 
         if (!response.ok) {

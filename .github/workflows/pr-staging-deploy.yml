@@ -31,7 +31,7 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }} 
           path: "pr-build"
 
-      - name: Install and Build
+      - name: Fetch Pepy stats artifact
         run: |
           cd pr-build
           if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
@@ -44,14 +44,20 @@ jobs:
             "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
             > public/pepy-stats.json
 
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
+
+      - name: Install and Build
+        run: |
+          cd pr-build
+
           npm install
           export VITE_BASE_URL=/ngiab-website-staging/
           npm run build
         env:
           CI: ""
           VITE_BASE_URL: /ngiab-website-staging/
-          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
-          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
 
       - name: Checkout staging repo
         uses: actions/checkout@v3
