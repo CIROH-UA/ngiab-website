@@ -4,6 +4,8 @@ import { VitePluginRadar } from 'vite-plugin-radar'
 import path from "path"
 
 export default defineConfig(() => {
+  const pepyApiTarget = process.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech';
+
   return {
     base: process.env.VITE_BASE_URL || '/',
     build: {
@@ -29,7 +31,16 @@ export default defineConfig(() => {
       port: 3000,
       proxy: {
         '/pepy-api': {
-          target: process.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech',
+          target: pepyApiTarget,
+          changeOrigin: true,
+          rewrite: (incomingPath) => incomingPath.replace(/^\/pepy-api/, ''),
+        },
+      },
+    },
+    preview: {
+      proxy: {
+        '/pepy-api': {
+          target: pepyApiTarget,
           changeOrigin: true,
           rewrite: (incomingPath) => incomingPath.replace(/^\/pepy-api/, ''),
         },
