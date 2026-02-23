@@ -70,21 +70,21 @@ const NRDS = () => {
             {[
               {
                 title: 'Forcing Processor',
-                description: 'Transform and standardize meteorologic forcings for NextGen.',
+                description: 'Maps NWM forcings and channel routing data onto the NextGen Hydrofabric',
                 image: 'assets/img/tool/forcingprocessor.png',
                 repo: 'https://github.com/CIROH-UA/forcingprocessor',
                 issues: 'https://github.com/CIROH-UA/forcingprocessor/issues/new',
               },
               {
                 title: 'Datastream CLI',
-                description: 'A standalone CLI that orchestrates NRDS workflows end-to-end.',
+                description: 'An all-in-one tool for running reproducible NextGen simulations with NGIAB.',
                 image: 'assets/img/tool/datastreamcli.png',
                 repo: 'https://github.com/CIROH-UA/datastreamcli',
                 issues: 'https://github.com/CIROH-UA/datastreamcli/issues/new',
               },
               {
                 title: 'NGEN-DataStream',
-                description: 'Daily NextGen simulations in AWS with community configs.',
+                description: 'AWS infrastructure for ForcingProcessor and DataStreamCLI, powering NRDS — NGIAB containerized hydrologic simulations to support research-to-operations.',
                 image: 'assets/img/tool/nrds.png',
                 repo: 'https://github.com/CIROH-UA/ngen-datastream',
                 issues: 'https://github.com/CIROH-UA/ngen-datastream/issues/new',
