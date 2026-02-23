@@ -399,11 +399,6 @@ const DockerPullCounter = () => {
                       {dashboardInfo.dataFetchDuration ? ` • Data fetched in ${dashboardInfo.dataFetchDuration}` : ''}
                     </p>
                   )}
-                  {dashboardInfo.latestDate && dashboardInfo.latestComplete && dashboardInfo.latestTotal && (
-                    <p>
-                      Latest day ({dashboardInfo.latestDate}): {dashboardInfo.latestComplete} / {dashboardInfo.latestTotal} ({dashboardInfo.latestPercent}%) complete
-                    </p>
-                  )}
                 </div>
               )}
             </div>
