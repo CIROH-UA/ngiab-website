@@ -66,6 +66,19 @@ const Contact = () => {
                 <div class="mt-16 text-center">
                     <div class="inline-block bg-gray-800 rounded-lg px-8 py-6 max-w-5xl">
                         <p class="text-md text-gray-400 italic">
+                            NextGen in a Box is provided under the 
+                            open-source <b>
+                            <a href="https://github.com/CIROH-UA/NGIAB-CloudInfra/blob/main/LICENSE" class="text-gray-300 hover:text-primary transition duration-300" target="_blank" rel="noopener noreferrer">
+                                MIT License
+                            </a>
+                            </b>. That means you are free to modify, publish, or redistribute it however you like, as long as you provide the license notice with any copy of the software.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <div class="inline-block bg-gray-800 rounded-lg px-8 py-6 max-w-5xl">
+                        <p class="text-md text-gray-400 italic">
                             This project was supported by the Cooperative Institute for Research to Operations in Hydrology (CIROH) with funding under award NA22NWS4320003 from the NOAA Cooperative Institute Program. The statements, findings, conclusions, and recommendations are those of the author(s) and do not necessarily reflect the opinions of NOAA.
                         </p>
                     </div>
