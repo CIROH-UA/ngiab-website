@@ -41,7 +41,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_PEPY_TECH_BASE_URL: ${{ github.repository == 'CIROH-UA/ngiab-website' && '/' || '/ngiab-website/' }}
+          VITE_BASE_URL: ${{ github.repository == 'CIROH-UA/ngiab-website' && '/' || '/ngiab-website/' }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL }}
           VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
