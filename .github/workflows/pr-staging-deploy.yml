@@ -40,6 +40,8 @@ jobs:
         env:
           CI: ""
           VITE_BASE_URL: /ngiab-website-staging/
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL }}
 
       - name: Checkout staging repo
         uses: actions/checkout@v3
