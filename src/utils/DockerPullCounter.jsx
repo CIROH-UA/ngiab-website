@@ -103,28 +103,31 @@ const DockerPullCounter = () => {
         setDockerError(null);
       } catch (fetchError) {
         console.error('Error fetching docker pull count:', fetchError);
-        setDockerError('Failed to fetch Docker pull stats');
+        setDockerError('Failed to fetch Docker pull stats; see console for details');
       } finally {
         setDockerLoading(false);
       }
     };
 
     const fetchPepyStats = async () => {
-      const token = import.meta.env.VITE_PEPY_TECH_TOKEN || import.meta.env.PEPY_TECH_TOKEN;
+      const baseUrl = import.meta.env.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech';
 
-      if (!token) {
-        console.error('Missing Pepy API key in environment variables.');
-        setPepyError('Failed to fetch package download stats');
-        setPepyLoading(false);
-        return;
-      }
+      // Use proxy for local dev/preview; use static build artifact for deployed production (avoids CORS)
+      const isLocalPreview = import.meta.env.PROD && typeof window !== 'undefined' && window.location.hostname === 'localhost';
+      const useProxy = import.meta.env.DEV || isLocalPreview;
+      const useStaticBuildStats = import.meta.env.PROD && !isLocalPreview;
+      const apiEndpoint = useProxy
+        ? `/pepy-api/api/v2/projects/${PACKAGE_NAME}`
+        : `${baseUrl}/api/v2/projects/${PACKAGE_NAME}`;
+      const staticStatsPath = `${import.meta.env.BASE_URL}pepy-stats.json`;
 
       try {
-        const response = await fetch(`/pepy-api/api/v2/projects/${PACKAGE_NAME}`, {
-          headers: {
-            'X-API-Key': token,
-          },
-        });
+        let response;
+        if (useStaticBuildStats) {
+          response = await fetch(staticStatsPath, { cache: 'no-store' });
+        } else {
+          response = await fetch(apiEndpoint);
+        }
 
         if (!response.ok) {
           throw new Error(`Pepy API request failed with status ${response.status}`);
@@ -160,7 +163,7 @@ const DockerPullCounter = () => {
         setPepyError(null);
       } catch (fetchError) {
         console.error('Error fetching Pepy stats:', fetchError);
-        setPepyError('Failed to fetch package download stats');
+        setPepyError('Failed to fetch package download stats; see console for details');
       } finally {
         setPepyLoading(false);
       }
@@ -397,11 +400,6 @@ const DockerPullCounter = () => {
                     <p>
                       Last updated: {dashboardInfo.lastUpdated}
                       {dashboardInfo.dataFetchDuration ? ` • Data fetched in ${dashboardInfo.dataFetchDuration}` : ''}
-                    </p>
-                  )}
-                  {dashboardInfo.latestDate && dashboardInfo.latestComplete && dashboardInfo.latestTotal && (
-                    <p>
-                      Latest day ({dashboardInfo.latestDate}): {dashboardInfo.latestComplete} / {dashboardInfo.latestTotal} ({dashboardInfo.latestPercent}%) complete
                     </p>
                   )}
                 </div>

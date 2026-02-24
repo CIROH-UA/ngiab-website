@@ -30,12 +30,12 @@ const Team = () => {
     },
     {
       name: "James Halgren",
-      role: "Assistant Director Science and Research Operations",
+      role: "Associate Professor at BYU",
       image: "assets/img/team/James-Halgren.jpg",
       github: "https://github.com/jameshalgren",
       linkedin: "https://www.linkedin.com/in/smartwater/",
-      email: "jshalgren@ua.edu",
-      department: "awi"
+      email: "James.Halgren@byu.edu",
+      department: "byu"
     },
     {
       name: "Zach Wills",
