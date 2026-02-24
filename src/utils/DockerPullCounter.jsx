@@ -103,7 +103,7 @@ const DockerPullCounter = () => {
         setDockerError(null);
       } catch (fetchError) {
         console.error('Error fetching docker pull count:', fetchError);
-        setDockerError('Failed to fetch Docker pull stats');
+        setDockerError('Failed to fetch Docker pull stats; see console for details');
       } finally {
         setDockerLoading(false);
       }
@@ -163,7 +163,7 @@ const DockerPullCounter = () => {
         setPepyError(null);
       } catch (fetchError) {
         console.error('Error fetching Pepy stats:', fetchError);
-        setPepyError('Failed to fetch package download stats');
+        setPepyError('Failed to fetch package download stats; see console for details');
       } finally {
         setPepyLoading(false);
       }
