@@ -223,7 +223,7 @@ const NRDS = () => {
               <i className="fas fa-comments text-2xl text-teal-400 mt-1" />
               <div>
                 <h5 className="font-semibold text-white mb-1">Join the Discussion</h5>
-                <p>Engage with the NRDS discussions, propose enhancements,
+                <p>Engage with NRDS discussions, propose enhancements,
                 report issues, or collaborate on new workflows. A space for both 
                 developers and researchers.</p>
                 <a
@@ -238,6 +238,25 @@ const NRDS = () => {
             </div>
           </div>
         </div>
+
+        <div
+          className="mt-16 bg-white/10 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="300"
+        >
+          <div class="inline-block rounded-lg px-8 py-6 max-w-5xl">
+            <p class="text-md text-white/80 italic">
+              NextGen Research Datastream's software components are provided under the
+              open-source <b>
+              <a href="https://github.com/CIROH-UA/ngen-datastream/blob/main/LICENSE.md" class="text-white hover:text-primary transition duration-300" target="_blank" rel="noopener noreferrer">
+                GNU GPL v3.0 license
+              </a>
+              </b>. That means you are free to copy, distribute, or modify the software, but you must retain the GPL license and provide a full copy of the source code when doing so.
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-white py-8">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="flex justify-center items-center space-x-12">
-         <p class="text-gray-900">&copy; 2025 NextGen In A Box</p>
+         <p class="text-gray-900">&copy; 2026 CIROH - The University of Alabama</p>
           <div className="flex justify-center space-x-6">
             <a href="https://github.com/ciroh-ua/NGIAB-CloudInfra/" className="text-gray-900 hover:text-primary text-2xl" target="_blank"
     rel="noopener noreferrer"><i className="fab fa-github"></i></a>
