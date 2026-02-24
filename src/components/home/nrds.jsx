@@ -10,7 +10,7 @@ const Nrds = () => {
         </div>
         <div className="flex justify-center">
           <a
-            href="https://ngiab.ciroh.org/#/nrdsngiab.ciroh.org"
+            href="https://ngiab.ciroh.org/#/nrds"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-xl px-12 py-4"
