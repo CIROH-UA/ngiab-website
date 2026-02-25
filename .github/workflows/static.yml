@@ -38,11 +38,28 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Validate Pepy token
+        run: |
+          if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
+            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
+            exit 1
+          fi
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+      - name: Fetch Pepy stats artifact
+        run: |
+          curl -sSf \
+            -H "X-API-Key: $VITE_PEPY_TECH_TOKEN" \
+            "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
+            > public/pepy-stats.json
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
       - name: Build
         run: npm run build
         env:
           VITE_BASE_URL: ${{ github.repository == 'CIROH-UA/ngiab-website' && '/' || '/ngiab-website/' }}
-          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

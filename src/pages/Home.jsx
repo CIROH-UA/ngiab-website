@@ -14,6 +14,7 @@ import Tools from '../components/home/tools';
 import Partner from '../components/home/partner';
 import Contact from '../components/home/contact';
 import Blog from '../components/home/blog';
+import Nrds from '../components/home/nrds';
 import VideoTestimonial from '../components/home/VideoTestimonial';
 import Contribute from '../components/home/contribute';
 
@@ -45,6 +46,9 @@ const Home = () => {
 
       {/* Blog Section */}
       <Blog />
+
+      {/* NRDS Section */}
+      <Nrds />
       
       {/* Community Spotlight: Video Testimonial */}
       <VideoTestimonial />
