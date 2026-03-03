@@ -1,4 +1,4 @@
-name: Clean up PR from composite staging target
+name: Clean up PR staging content from composite target
 
 on:
   pull_request_target:

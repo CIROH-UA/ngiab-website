@@ -1,4 +1,4 @@
-name: Deploy PR to composite staging target
+name: Deploy PR to composite target for staging
 
 on:
   pull_request_target:

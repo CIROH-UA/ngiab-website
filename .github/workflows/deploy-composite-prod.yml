@@ -1,4 +1,4 @@
-name: Deploy static content to composite staging target
+name: Deploy static content to composite target
 
 on:
   # Runs on pushes targeting the default branch
