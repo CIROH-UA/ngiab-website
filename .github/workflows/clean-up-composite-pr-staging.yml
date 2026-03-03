@@ -44,6 +44,3 @@ jobs:
           git add .
           git commit -m "Remove staging folder for PR #${{ github.event.pull_request.number }} - ${{ github.sha }}" || echo "No changes to commit"
           git push -f origin gh-pages
-      
-      - name: Remove PR build folder from environment
-        run: rm -rf pr-build-${{ github.event.pull_request.number }}
