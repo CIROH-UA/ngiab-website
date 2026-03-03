@@ -6,8 +6,8 @@ on:
     types: [closed]
 
 env:
-  STAGING_REPO: CIROH-UA/subdomain-ngiab
-  STAGING_PATH: /pr-staging/${{ github.event.pull_request.number }}/
+  TARGET_REPO: CIROH-UA/subdomain-ngiab
+  TARGET_PATH: /pr-staging/${{ github.event.pull_request.number }}
 
 concurrency:
   group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pr-staging
-      url: https://ngiab.ciroh.org/${{ STAGING_PATH }}
+      url: https://ngiab.ciroh.org/${{ TARGET_PATH }}
     steps:
       - name: Set GitHub Actions as Commit Author
         run: |
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout staging repository
         uses: actions/checkout@v3
         with:
-          repository: ${{ STAGING_REPO }}
+          repository: ${{ TARGET_REPO }}
           fetch-depth: 0
           path: "staging-deploy"
           ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
@@ -39,7 +39,7 @@ jobs:
           git checkout gh-pages || git checkout --orphan gh-pages
           
           # Clear existing content
-          git rm -rf .${{ STAGING_PATH }} || true
+          git rm -rf .${{ TARGET_PATH }} || true
           
           git add .
           git commit -m "Remove staging folder for PR #${{ github.event.pull_request.number }} - ${{ github.sha }}" || echo "No changes to commit"

@@ -6,8 +6,8 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  STAGING_REPO: CIROH-UA/subdomain-ngiab
-  STAGING_PATH: /pr-staging/${{ github.event.pull_request.number }}/
+  TARGET_REPO: CIROH-UA/subdomain-ngiab
+  TARGET_PATH: /pr-staging/${{ github.event.pull_request.number }}/
 
 concurrency:
   group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pr-staging
-      url: https://ngiab.ciroh.org/${{ STAGING_PATH }}
+      url: https://ngiab.ciroh.org/${{ TARGET_PATH }}
     steps:
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -60,19 +60,19 @@ jobs:
           cd "pr-build-${{ github.event.pull_request.number }}"
 
           npm install
-          export VITE_BASE_URL="$STAGING_PATH"
+          export VITE_BASE_URL="$TARGET_PATH"
           npm run build
         env:
           CI: ""
-          VITE_BASE_URL: "$STAGING_PATH"
+          VITE_BASE_URL: "$TARGET_PATH"
 
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: "pr-build-${{ github.event.pull_request.number }}/build/"
           ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
-          respository-name: ${{ env.STAGING_REPO }}
-          target-folder: ${{ env.STAGING_PATH }}
+          respository-name: ${{ env.TARGET_REPO }}
+          target-folder: ${{ env.TARGET_PATH }}
           clean: true # Set to false if deploying to a composite repository's root!
 
       - name: Comment PR with staging link
@@ -80,6 +80,6 @@ jobs:
         with:
           message: |
             **Staging Preview:**
-            🚀 https://ngiab.ciroh.org/${{ STAGING_PATH }}
+            🚀 https://ngiab.ciroh.org/${{ TARGET_PATH }}
             
             _Built from commit ${{ github.sha }}_
