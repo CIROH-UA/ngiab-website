@@ -33,11 +33,6 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: Set GitHub Actions as Commit Author
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-
       - name: Fetch Pepy stats artifact
         if: vars.SKIP_VITE_PEPY != 'true'
         run: |
@@ -72,6 +67,8 @@ jobs:
           repository-name: ${{ env.TARGET_REPO }}
           target-folder: ${{ env.TARGET_PATH }}
           clean: true # Set to false if deploying to a composite repository's root!
+          git-config-name: "github-actions"
+          git-config-email: "github-actions@github.com"
 
       - name: Comment PR with staging link
         uses: mshick/add-pr-comment@v2
