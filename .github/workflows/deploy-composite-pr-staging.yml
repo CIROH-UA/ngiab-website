@@ -1,4 +1,5 @@
 name: Deploy PR to composite target for staging
+run-name: Deploy PR \#${{github.event.pull_request.number}} to composite target for staging
 
 on:
   pull_request_target:

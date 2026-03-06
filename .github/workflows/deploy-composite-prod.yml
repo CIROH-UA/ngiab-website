@@ -1,4 +1,5 @@
 name: Deploy main to composite target for production
+run-name: Deploy main to composite target for production
 
 on:
   # Runs on pushes targeting the default branch
