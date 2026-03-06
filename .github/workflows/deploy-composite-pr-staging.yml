@@ -6,8 +6,8 @@ on:
     types: [opened, synchronize, reopened]
 
 env:
-  TARGET_REPO: CIROH-UA/subdomain-ngiab
-  TARGET_PATH: /pr-staging/${{ github.event.pull_request.number }}/
+  TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
+  TARGET_PATH: pr-staging/${{ github.event.pull_request.number }}/
 
 concurrency:
   group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
@@ -18,8 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pr-staging
-      url: https://ngiab.ciroh.org/${{ TARGET_PATH }}
+      url: https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
     steps:
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}       
+          repository: ${{ github.event.pull_request.head.repo.full_name }} 
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -31,16 +38,9 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
 
-      - name: Checkout PR Branch
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}       
-          repository: ${{ github.event.pull_request.head.repo.full_name }} 
-          path: "pr-build-${{ github.event.pull_request.number }}"
-
       - name: Fetch Pepy stats artifact
+        if: vars.SKIP_VITE_PEPY != 'true'
         run: |
-          cd "pr-build-${{ github.event.pull_request.number }}"
           if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
             echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
             exit 1
@@ -57,8 +57,6 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd "pr-build-${{ github.event.pull_request.number }}"
-
           npm install
           export VITE_BASE_URL="$TARGET_PATH"
           npm run build
@@ -69,9 +67,9 @@ jobs:
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: "pr-build-${{ github.event.pull_request.number }}/build/"
+          folder: "build/"
           ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
-          respository-name: ${{ env.TARGET_REPO }}
+          repository-name: ${{ env.TARGET_REPO }}
           target-folder: ${{ env.TARGET_PATH }}
           clean: true # Set to false if deploying to a composite repository's root!
 
@@ -80,6 +78,6 @@ jobs:
         with:
           message: |
             **Staging Preview:**
-            🚀 https://ngiab.ciroh.org/${{ TARGET_PATH }}
+            🚀 https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
             
             _Built from commit ${{ github.sha }}_
