@@ -1,0 +1,78 @@
+name: Deploy main to composite target for production
+run-name: Deploy main to composite target for production
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
+  TARGET_PATH: .
+  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: ci-ngiab-website-prod
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: pr-staging # TODO: create dedicated environment for this
+      url: https://ngiab.ciroh.org/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate Pepy token
+        if: vars.SKIP_VITE_PEPY != 'true'
+        run: |
+          if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
+            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
+            exit 1
+          fi
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+
+      - name: Fetch Pepy stats artifact
+        if: vars.SKIP_VITE_PEPY != 'true'
+        run: |
+          curl -sSf \
+            -H "X-API-Key: $VITE_PEPY_TECH_TOKEN" \
+            "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
+            > public/pepy-stats.json
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
+
+      - name: Deploy to composite repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: "build/"
+          ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
+          repository-name: ${{ env.TARGET_REPO }}
+          target-folder: ${{ env.TARGET_PATH }}
+          clean: false # Set to false if deploying to a composite repository's root!
+          git-config-name: "github-actions"
+          git-config-email: "github-actions@github.com"

@@ -1,0 +1,80 @@
+name: Deploy PR to composite target for staging
+run-name: Deploy PR \#${{github.event.pull_request.number}} to composite target for staging
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+env:
+  TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
+  TARGET_PATH: staging/${{ github.event.pull_request.number }}
+  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/${{ vars.TARGET_PATH }}
+
+concurrency:
+  group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  pr-build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: pr-staging
+      url: https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
+    steps:
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}       
+          repository: ${{ github.event.pull_request.head.repo.full_name }} 
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Fetch Pepy stats artifact
+        if: vars.SKIP_VITE_PEPY != 'true'
+        run: |
+          if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
+            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
+            exit 1
+          fi
+
+          curl -sSf \
+            -H "X-API-Key: $VITE_PEPY_TECH_TOKEN" \
+            "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
+            > public/pepy-stats.json
+
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: ""
+
+      - name: Deploy to composite repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: "build/"
+          ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
+          repository-name: ${{ env.TARGET_REPO }}
+          target-folder: ${{ env.TARGET_PATH }}
+          clean: true # Set to false if deploying to a composite repository's root!
+          git-config-name: "github-actions"
+          git-config-email: "github-actions@github.com"
+
+      - name: Comment PR with staging link
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            **Staging Preview:**
+            🚀 https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
+            
+            _Built from commit ${{ github.sha }}_
