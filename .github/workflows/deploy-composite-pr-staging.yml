@@ -7,7 +7,7 @@ on:
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
-  TARGET_PATH: staging/${{ github.event.pull_request.number }}/
+  TARGET_PATH: staging/${{ github.event.pull_request.number }}
   VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/${{ vars.TARGET_PATH }}
 
 concurrency:

@@ -7,7 +7,7 @@ on:
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
-  TARGET_PATH: pr-staging/${{ github.event.pull_request.number }}
+  TARGET_PATH: staging/${{ github.event.pull_request.number }}
 
 concurrency:
   group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
@@ -39,7 +39,7 @@ jobs:
           git checkout gh-pages || git checkout --orphan gh-pages
           
           # Clear existing content
-          git rm -rf ./${{ env.TARGET_PATH }} || true
+          git rm -rf ${{ env.TARGET_PATH }} || true
           
           git add .
           git commit -m "Remove staging folder for PR #${{ github.event.pull_request.number }} - ${{ github.sha }}" || echo "No changes to commit"
