@@ -1,4 +1,4 @@
-name: Deploy static content to composite target
+name: Deploy main to composite target for production
 
 on:
   # Runs on pushes targeting the default branch
@@ -11,6 +11,7 @@ on:
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
   TARGET_PATH: .
+  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
@@ -62,7 +63,6 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_URL: ${{ github.repository == 'CIROH-UA/ngiab-website' && '/' || '/ngiab-website/' }}
           VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
 
       - name: Deploy to composite repository

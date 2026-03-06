@@ -7,7 +7,8 @@ on:
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
-  TARGET_PATH: pr-staging/${{ github.event.pull_request.number }}/
+  TARGET_PATH: staging/${{ github.event.pull_request.number }}/
+  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/${{ vars.TARGET_PATH }}
 
 concurrency:
   group: ci-ngiab-website-pr-#{{ github.event.pull_request.number }}
@@ -53,11 +54,9 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          export VITE_BASE_URL="$TARGET_PATH"
           npm run build
         env:
           CI: ""
-          VITE_BASE_URL: "$TARGET_PATH"
 
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
