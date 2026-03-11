@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 name: 'Deploy PR to composite target for staging'
 run-name: 'Deploy PR #${{github.event.pull_request.number}} to composite target for staging'
-=======
-name: Deploy PR to composite target for staging
-run-name: Deploy PR \#${{github.event.pull_request.number}} to composite target for staging
->>>>>>> upstream
 
 on:
   pull_request_target:

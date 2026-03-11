@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 name: 'Deploy main to composite target for production'
 run-name: 'Deploy main to composite target for production'
-=======
-name: Deploy main to composite target for production
-run-name: Deploy main to composite target for production
->>>>>>> upstream
 
 on:
   # Runs on pushes targeting the default branch
