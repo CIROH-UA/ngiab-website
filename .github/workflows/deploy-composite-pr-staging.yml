@@ -24,13 +24,13 @@ jobs:
     steps:
 
       - name: Checkout PR Branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.ref }}       
           repository: ${{ github.event.pull_request.head.repo.full_name }} 
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'npm'

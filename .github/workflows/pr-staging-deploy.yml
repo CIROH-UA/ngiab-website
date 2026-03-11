@@ -17,7 +17,7 @@ jobs:
       url: https://docs.ciroh.org/ngiab-website-staging/
     steps:
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
 
       - name: Set GitHub Actions as Commit Author
         run: |
@@ -25,7 +25,7 @@ jobs:
           git config --global user.email github-actions@github.com
 
       - name: Checkout PR Branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.ref }}       
           repository: ${{ github.event.pull_request.head.repo.full_name }} 
