@@ -1,5 +1,5 @@
-name: Clean up PR staging content from composite target
-run-name: Clean up PR \#${{github.event.pull_request.number}} from composite target
+name: 'Clean up PR staging content from composite target'
+run-name: 'Clean up PR #${{github.event.pull_request.number}} from composite target'
 
 on:
   pull_request_target:
@@ -21,27 +21,37 @@ jobs:
       name: pr-staging
       url: https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
     steps:
-      - name: Set GitHub Actions as Commit Author
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-
       - name: Checkout staging repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           repository: ${{ env.TARGET_REPO }}
           fetch-depth: 0
-          path: "staging-deploy"
           ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
-      
+
       - name: Remove PR folder from staging repository
         run: |
-          cd staging-deploy
-          git checkout gh-pages || git checkout --orphan gh-pages
-          
+          # Make local branch to prevent working tree conflicts
+          git checkout -b local
+
+          # If no such folder exists, exit
+          if [ ! -d "./${{ env.TARGET_PATH }}" ]; then
+            echo "Nothing to clean up, exiting."
+            echo "SKIP_DEPLOY=true" >> $GITHUB_ENV
+            exit 0
+          fi
+
           # Clear existing content
-          git rm -rf ${{ env.TARGET_PATH }} || true
-          
-          git add .
-          git commit -m "Remove staging folder for PR #${{ github.event.pull_request.number }} - ${{ github.sha }}" || echo "No changes to commit"
-          git push -f origin gh-pages
+          git rm -rf ${{ env.TARGET_PATH }}
+          git commit -m local_branch_change
+
+      - name: Deploy cleaned staging to composite repository
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: ${{ !env.SKIP_DEPLOY }}
+        with:
+          folder: ${{ env.STAGING_PATH }}
+          ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
+          repository-name: ${{ env.TARGET_REPO }}
+          target-folder: ${{ env.STAGING_PATH }}
+          clean: true # Set to false if deploying to a composite repository's root!
+          git-config-name: "github-actions"
+          git-config-email: "github-actions@github.com"

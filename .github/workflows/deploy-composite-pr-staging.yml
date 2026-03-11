@@ -1,5 +1,5 @@
-name: Deploy PR to composite target for staging
-run-name: Deploy PR \#${{github.event.pull_request.number}} to composite target for staging
+name: 'Deploy PR to composite target for staging'
+run-name: 'Deploy PR #${{github.event.pull_request.number}} to composite target for staging'
 
 on:
   pull_request_target:
@@ -24,13 +24,13 @@ jobs:
     steps:
 
       - name: Checkout PR Branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.ref }}       
           repository: ${{ github.event.pull_request.head.repo.full_name }} 
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: 'npm'
@@ -70,8 +70,10 @@ jobs:
           git-config-name: "github-actions"
           git-config-email: "github-actions@github.com"
 
+      
       - name: Comment PR with staging link
         uses: mshick/add-pr-comment@v2
+        if: vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true'
         with:
           message: |
             **Staging Preview:**
