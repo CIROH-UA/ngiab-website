@@ -1,5 +1,5 @@
-name: Clean up PR staging content from composite target
-run-name: Clean up PR \#${{github.event.pull_request.number}} from composite target
+name: 'Clean up PR staging content from composite target'
+run-name: 'Clean up PR #${{github.event.pull_request.number}} from composite target'
 
 on:
   pull_request_target:

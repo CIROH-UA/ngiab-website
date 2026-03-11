@@ -1,4 +1,4 @@
-name: Staging PR Deploy
+name: Staging PR Deploy (legacy)
 
 on:
   pull_request_target:
