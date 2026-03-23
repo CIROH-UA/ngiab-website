@@ -7,7 +7,7 @@ const ways = [
     label: 'Cloud (NGIAB-CloudInfra)',
     title: 'Run NGIAB in the Cloud',
     description:
-      'Run NGIAB on AWS EC2 instances or other cloud compute environments. Use NGIAB 101 to set up the environment and run NGIAB in the cloud.',
+      'Run NGIAB on AWS EC2 instances or other cloud compute environments. Use NGIAB CloudInfra and the NGIAB 101 training materials to set up the environment and run NGIAB in the cloud.',
     link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
     learnMoreCta: 'NGIAB 101 Training',
   },
@@ -17,7 +17,7 @@ const ways = [
     label: 'HPC (NGIAB-HPCInfra)',
     title: 'Run NGIAB on HPC',
     description:
-      'Run large-scale NextGen simulations on HPC clusters. Uses singularity image to simplify environment setup. Follow the readme guide to set up the environment and run NGIAB on HPC.',
+      'Run large-scale NextGen simulations on HPC clusters. This approach uses a Singularity image to simplify environment setup. Follow the README to configure the environment and execute NGIAB on supported HPC clusters.',
     link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
     learnMoreCta: 'NGIAB-HPCInfra README',
   },
@@ -27,17 +27,17 @@ const ways = [
     label: 'Local Docker',
     title: 'Run NGIAB on Your Laptop',
     description:
-      'Run NextGen simulations locally on your own laptop or workstation using Docker. Good for local testing and development purpose. Use NGIAB 101 to set up the environment and run NGIAB on your local machine.',
+      'Run NextGen simulations locally on your own laptop or workstation using Docker. This option is well suited for local testing, development, and debugging. Use the NGIAB 101 to set up the environment and run NGIAB on your local machine.',
     link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
     learnMoreCta: 'NGIAB 101 Training',
   },
   {
     id: 'platform',
     category: 'direct',
-    label: 'CIROH JupyterHub',
-    title: 'Run NGIAB from CIROH JupyterHub',
+    label: 'CIROH-2i2c JupyterHub',
+    title: 'Run NGIAB from CIROH-2i2c JupyterHub',
     description:
-      'Run NGIAB interactively in Jupyter notebooks through CIROH JupyterHub. Select the CIROH Community NextGen Hub Image in CIROH JupyterHub to set up the environment for running NGIAB. Click the link below to access the HydroShare resource with example notebooks and instructions for running NGIAB on CIROH JupyterHub. You can click on "Open with" button in the HydroShare page to open the notebooks directly in CIROH JupyterHub.',
+      'Run NGIAB interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NGIAB.  The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
     link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
     learnMoreCta: 'Open HydroShare Resource',
   },
@@ -47,7 +47,7 @@ const ways = [
     label: 'DataStreamCLI',
     title: 'Run NGIAB using DataStreamCLI',
     description:
-      'NGEN-datastream orchestration infrastructure can be deployed in AWS cloud and then a user can use a local interface (AWS CLI) to issue executions in AWS. The ngen-datastream repo contains forcingprocessor and datastreamcli executions in the datastream, but could be used for direct NGIAB executions as well.',
+      'DataStreamCLI is a stand alone tool that automates the complete workflow from preprocessing input data for NextGen to execution of the NextGen simulation through NextGen In a Box (NGIAB). DataStreamCLI serves as the workflow tooling for the NextGen Research DataStream. This software allows users to run NextGen in an efficient, relatively painless, and reproducible fashion while providing flexibility and integrations like forcingprocessor, hfsubset, NextGen In A Box, and TEEHR.',
     link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
     learnMoreCta: 'DataStreamCLI README',
   },
@@ -57,7 +57,7 @@ const ways = [
     label: 'NGIAB Preprocess',
     title: 'Run NGIAB using NGIAB Data Preprocess',
     description:
-      'Use NGIAB Data Preprocess to generate standardized forcing files for NGIAB runs and execute NextGen with a single command. Use --run argument to automatically run NGIAB against the output foler.',
+      'NGIAB Data Preprocess is a tool to generate standardized forcing files for NGIAB runs and to execute NextGen with a single command. The --run argument allows users to automatically run NGIAB using the generated outputs, simplifying local or cloud-based execution workflows.',
     link: 'https://github.com/CIROH-UA/NGIAB_data_preprocess/?tab=readme-ov-file#cli-documentation',
     learnMoreCta: 'NGIAB Data Preprocess README',
   },
@@ -185,7 +185,7 @@ const RunWays = () => {
             )
           : renderTabsAndContent(
               directWays,
-              'Use these options to run NGIAB in cloud, HPC, or your own laptop. Unlike workflow tools, these options do not automate data preprocessing or execution, so you must prepare inputs and run NextGen simulations manually (using guide script).'
+              'Use these options to run NGIAB directly in the cloud, on HPC clusters, or on your own local machine. Unlike workflow tools, these approaches do not automate data preprocessing or orchestration. Users are responsible for preparing input data and manually running NextGen simulations  using guide script.'
             )}
       </div>
     </section>
