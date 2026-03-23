@@ -7,8 +7,9 @@ const ways = [
     label: 'Cloud (NGIAB-CloudInfra)',
     title: 'Run NGIAB in the Cloud',
     description:
-      'Deploy NGIAB to cloud infrastructure (e.g., AWS) and run NextGen directly in a scalable, containerized environment. You configure and manage model inputs yourself.',
+      'Run NGIAB on AWS EC2 instances or other cloud compute environments. Use NGIAB 101 to set up the environment and run NGIAB in the cloud.',
     link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
+    learnMoreCta: 'NGIAB 101 Training',
   },
   {
     id: 'hpc',
@@ -16,8 +17,9 @@ const ways = [
     label: 'HPC (NGIAB-HPCInfra)',
     title: 'Run NGIAB on HPC',
     description:
-      'Run large-scale NextGen simulations on HPC clusters.',
+      'Run large-scale NextGen simulations on HPC clusters. Uses singularity image to simplify environment setup. Follow the readme guide to set up the environment and run NGIAB on HPC.',
     link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
+    learnMoreCta: 'NGIAB-HPCInfra README',
   },
   {
     id: 'local-docker',
@@ -25,8 +27,9 @@ const ways = [
     label: 'Local Docker',
     title: 'Run NGIAB on Your Laptop',
     description:
-      'Run NextGen simulations locally on your own laptop or workstation using Docker.',
+      'Run NextGen simulations locally on your own laptop or workstation using Docker. Good for local testing and development purpose. Use NGIAB 101 to set up the environment and run NGIAB on your local machine.',
     link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
+    learnMoreCta: 'NGIAB 101 Training',
   },
   {
     id: 'platform',
@@ -34,8 +37,9 @@ const ways = [
     label: 'CIROH JupyterHub',
     title: 'Run NGIAB from CIROH JupyterHub',
     description:
-      'Run NGIAB interactively in Jupyter notebooks through CIROH JupyterHub.',
+      'Run NGIAB interactively in Jupyter notebooks through CIROH JupyterHub. Select the CIROH Community NextGen Hub Image in CIROH JupyterHub to set up the environment for running NGIAB. Click the link below to access the HydroShare resource with example notebooks and instructions for running NGIAB on CIROH JupyterHub. You can click on "Open with" button in the HydroShare page to open the notebooks directly in CIROH JupyterHub.',
     link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
+    learnMoreCta: 'Open HydroShare Resource',
   },
   {
     id: 'datastreamcli',
@@ -43,17 +47,19 @@ const ways = [
     label: 'DataStreamCLI',
     title: 'Run NGIAB using DataStreamCLI',
     description:
-      'Use the DataStreamCLI workflow tool to automatically fetch data, build NGIAB inputs, and execute NextGen with a single command.',
+      'NGEN-datastream orchestration infrastructure can be deployed in AWS cloud and then a user can use a local interface (AWS CLI) to issue executions in AWS. The ngen-datastream repo contains forcingprocessor and datastreamcli executions in the datastream, but could be used for direct NGIAB executions as well.',
     link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
+    learnMoreCta: 'DataStreamCLI README',
   },
   {
     id: 'preprocess',
     category: 'workflow',
     label: 'NGIAB Preprocess',
-    title: 'Run NGIAB using NGIAB Preprocess',
+    title: 'Run NGIAB using NGIAB Data Preprocess',
     description:
-      'Use the NGIAB Preprocess to generate standardized forcing files for NGIAB runs and execute NextGen with a single command.',
+      'Use NGIAB Data Preprocess to generate standardized forcing files for NGIAB runs and execute NextGen with a single command. Use --run argument to automatically run NGIAB against the output foler.',
     link: 'https://github.com/CIROH-UA/NGIAB_data_preprocess/?tab=readme-ov-file#cli-documentation',
+    learnMoreCta: 'NGIAB Data Preprocess README',
   },
 ];
 
@@ -77,7 +83,7 @@ const RunWays = () => {
   const renderTabsAndContent = (groupWays, groupIntro) => {
     return (
       <div className="mt-4 space-y-6">
-        <p className="section-subheading  text-center text-gray-300">{groupIntro}</p>
+        <p className="section-subheading  max-w-7xl mx-auto text-center text-gray-300">{groupIntro}</p>
 
         <div className="flex flex-wrap justify-center gap-2">
           {groupWays.map((way) => {
@@ -104,7 +110,7 @@ const RunWays = () => {
             <h3 className="text-3xl font-semibold mb-3 text-white">
               {active.title}
             </h3>
-            <p className="section-subheading text-gray-300 mb-4">
+            <p className="max-w-4xl text-center mx-auto text-xl text-gray-300 mb-4">
               {active.description}
             </p>
           </div>
@@ -113,10 +119,6 @@ const RunWays = () => {
               <h4 className="text-xl font-semibold text-white mb-2">
                 Learn more
               </h4>
-              <p className="text-lg text-gray-300 mb-4">
-                Explore documentation, examples, and source code for this way of
-                running NGIAB.
-              </p>
               <a
                 href={active.link}
                 target={active.link.startsWith('http') ? '_blank' : undefined}
@@ -127,7 +129,7 @@ const RunWays = () => {
                 }
                 className="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium text-white bg-[rgb(49,125,140)] hover:bg-[rgb(39,105,118)] rounded-md transition-colors duration-200"
               >
-                Open resource
+                {active.learnMoreCta ?? 'Open resource'}
                 <span className="ml-2">
                   <i className="fas fa-arrow-right" />
                 </span>
@@ -179,11 +181,11 @@ const RunWays = () => {
         {activeTop === 'workflow'
           ? renderTabsAndContent(
               workflowWays,
-              'Use these workflow tools when you want automated complete workflow from preprocessing input data to running NextGen simulations.'
+              'Use these workflow tools when you want automated complete workflow from preprocessing input data to running NextGen simulations. Both datastreamcli and NGIAB preprocess run on the machine where they are installed. While they both can be run on AWS EC2 instances, neither tool alone has the ability to be interfaced with locally and perform the compute in the cloud'
             )
           : renderTabsAndContent(
               directWays,
-              'When you use these options, you are responsible for preparing inputs and running NextGen simulations.'
+              'Use these options to run NGIAB in cloud, HPC, or your own laptop. Unlike workflow tools, these options do not automate data preprocessing or execution, so you must prepare inputs and run NextGen simulations manually (using guide script).'
             )}
       </div>
     </section>
