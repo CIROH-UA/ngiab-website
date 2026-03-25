@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 const ways = [
   {
-    id: 'cloud',
+    id: 'docker',
     category: 'direct',
-    label: 'Cloud (NGIAB-CloudInfra)',
-    title: 'Run NGIAB in the Cloud',
+    label: 'Docker (NGIAB-CloudInfra)',
+    title: 'Run NGIAB locally or in the Cloud with Docker',
     description:
-      'Run NGIAB on AWS EC2 instances or other cloud compute environments. Use NGIAB CloudInfra and the NGIAB 101 training materials to set up the environment and run NGIAB in the cloud.',
+      'Run NGIAB using Docker on your local machine or in the AWS EC2 instances. This approach uses a Docker image to simplify environment setup and ensure reproducibility. Use NGIAB CloudInfra and the NGIAB 101 training materials to get started.',
     link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
     learnMoreCta: 'NGIAB 101 Training',
   },
@@ -21,16 +21,7 @@ const ways = [
     link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
     learnMoreCta: 'NGIAB-HPCInfra README',
   },
-  {
-    id: 'local-docker',
-    category: 'direct',
-    label: 'Local Docker',
-    title: 'Run NGIAB on Your Laptop',
-    description:
-      'Run NextGen simulations locally on your own laptop or workstation using Docker. This option is well suited for local testing, development, and debugging. Use the NGIAB 101 to set up the environment and run NGIAB on your local machine.',
-    link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
-    learnMoreCta: 'NGIAB 101 Training',
-  },
+
   {
     id: 'platform',
     category: 'direct',
