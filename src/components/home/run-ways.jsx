@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const ways = [
   {
@@ -38,7 +38,7 @@ const ways = [
     label: 'DataStreamCLI',
     title: 'Run NGIAB using DataStreamCLI',
     description:
-      'DataStreamCLI is a stand alone tool that automates the complete workflow from preprocessing input data for NextGen to execution of the NextGen simulation through NextGen In a Box (NGIAB). DataStreamCLI serves as the workflow tooling for the NextGen Research DataStream. This software allows users to run NextGen in an efficient, relatively painless, and reproducible fashion while providing flexibility and integrations like forcingprocessor, hfsubset, NextGen In A Box, and TEEHR.',
+      'DataStreamCLI is a standalone tool that automates the complete workflow from preprocessing input data for NextGen to execution of the NextGen simulation through NextGen In a Box (NGIAB). DataStreamCLI serves as the workflow tooling for the NextGen Research DataStream. This software allows users to run NextGen in an efficient, relatively painless, and reproducible fashion while providing flexibility and integrations like forcingprocessor, hfsubset, NextGen In A Box, and TEEHR.',
     link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
     learnMoreCta: 'DataStreamCLI README',
   },
@@ -83,6 +83,7 @@ const RunWays = () => {
               <button
                 key={way.id}
                 type="button"
+                role="tab"
                 onClick={() => setActiveId(way.id)}
                 className={`px-4 py-2 rounded-lg text-xl font-medium transition-all duration-300 ease-in-out ${
                   isActive
@@ -146,6 +147,7 @@ const RunWays = () => {
         <div className="mb-6 flex justify-center gap-2">
           <button
             type="button"
+            role="tab"
             onClick={() => handleTopChange('workflow')}
             className={`px-4 py-2 rounded-full text-2xl font-medium transition-all duration-300 ${
               activeTop === 'workflow'
@@ -157,6 +159,7 @@ const RunWays = () => {
           </button>
           <button
             type="button"
+            role="tab"
             onClick={() => handleTopChange('direct')}
             className={`px-4 py-2 rounded-full text-2xl font-medium transition-all duration-300 ${
               activeTop === 'direct'
@@ -172,11 +175,11 @@ const RunWays = () => {
         {activeTop === 'workflow'
           ? renderTabsAndContent(
               workflowWays,
-              'Use these workflow tools when you want automated complete workflow from preprocessing input data to running NextGen simulations. Both datastreamcli and NGIAB preprocess run on the machine where they are installed. While they both can be run on AWS EC2 instances, neither tool alone has the ability to be interfaced with locally and perform the compute in the cloud'
+              'Use these workflow tools to automate complete workflow from preprocessing input data to running NextGen simulations. Both datastreamcli and NGIAB preprocess run on the machine where they are installed. They can run on AWS EC2 instances, but neither tool by itself allows you to interact with them locally while performing the compute in the cloud.'
             )
           : renderTabsAndContent(
               directWays,
-              'Use these options to run NGIAB directly in the cloud, on HPC clusters, or on your own local machine. Unlike workflow tools, these approaches do not automate data preprocessing or orchestration. Users are responsible for preparing input data and manually running NextGen simulations  using guide script.'
+              'Use these options to run NGIAB directly on your local machine, in the cloud, or on HPC clusters. Unlike workflow tools, these approaches do not automate data preprocessing or orchestration. You are responsible for preparing input data and manually running NextGen simulations using the provided guide script.'
             )}
       </div>
     </section>
