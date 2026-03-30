@@ -8,7 +8,7 @@ const ways = [
     title: 'Run NGIAB locally or in the Cloud with Docker',
     description:
       'Run NGIAB using Docker on your local machine or in the AWS EC2 instances. This approach uses a Docker image to simplify environment setup and ensure reproducibility. Use NGIAB CloudInfra and the NGIAB 101 training materials to get started.',
-    link: 'https://docs.ciroh.org/training-NGIAB-101/installation.html',
+    link: 'https://ngiab.ciroh.org/training-NGIAB-101/installation.html',
     learnMoreCta: 'NGIAB 101 Training',
   },
   {
@@ -45,7 +45,7 @@ const ways = [
   {
     id: 'preprocess',
     category: 'workflow',
-    label: 'NGIAB Preprocess',
+    label: 'NGIAB Data Preprocess',
     title: 'Run NGIAB using NGIAB Data Preprocess',
     description:
       'NGIAB Data Preprocess is a tool to generate standardized forcing files for NGIAB runs and to execute NextGen with a single command. The --run argument allows users to automatically run NGIAB using the generated outputs, simplifying local or cloud-based execution workflows.',
