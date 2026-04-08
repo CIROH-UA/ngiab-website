@@ -16,7 +16,7 @@ const Demo = () => {
     >
       <h2 className="section-heading">NGIAB End-to-End Workflow</h2>
       <h3 className="section-subheading">
-        4 Minutes Demo
+        4 Minute Demo
       </h3>
     </div>
 
