@@ -14,9 +14,9 @@ const Demo = () => {
       data-aos="fade-up"
       data-aos-delay="100"
     >
-      <h2 className="section-heading">NGIAB Demo</h2>
+      <h2 className="section-heading">NGIAB End-to-End Workflow</h2>
       <h3 className="section-subheading">
-        NextGen In A Box — 5 Minute Walkthrough
+        4 Minutes Demo
       </h3>
     </div>
 
@@ -29,14 +29,13 @@ const Demo = () => {
       <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg border border-gray-200 bg-black">
         <iframe
           className="absolute top-0 left-0 w-full h-full rounded-lg"
-          src="https://www.youtube.com/embed/N2xZQDmq6ZE"
+          src="https://www.youtube.com/embed/uX2D6wbQ0iI"
           title="NGIAB 5 Minute Demo"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
       </div>
-
       {/* Caption */}
       <p
         className="text-center text-gray-700 mt-4"
