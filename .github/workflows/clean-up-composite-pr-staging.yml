@@ -22,6 +22,11 @@ jobs:
       name: pr-staging
       url: https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
     steps:
+      - name: Set GitHub Actions as Commit Author
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+    
       - name: Checkout staging repository
         uses: actions/checkout@v5
         with:
