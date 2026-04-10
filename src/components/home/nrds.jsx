@@ -200,7 +200,7 @@ const Nrds = () => {
         </div>
 
         <div className="max-w-5xl mx-auto mt-8 border border-slate-200 rounded-xl p-6 bg-gradient-to-r from-slate-50 to-white">
-          <h4 className="text-xl font-semibold text-gray-900 mb-3">Core repositories powering NRDS</h4>
+          <h4 className="text-xl font-semibold text-gray-900 mb-3">NRDS GitHub Repositories</h4>
           <ul className="flex flex-wrap gap-3 text-gray-700">
             <li>
               <a
