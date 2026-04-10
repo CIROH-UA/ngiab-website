@@ -29,6 +29,9 @@ const Home = () => {
       {/* Tools Section (Six tools linked to their respective repositories) */}
       <Tools />
 
+      {/* NRDS Section */}
+      <Nrds />
+
       {/* Five Ways to Run NGIAB (tabbed to save vertical space) */}
       <RunWays />
 
@@ -46,9 +49,6 @@ const Home = () => {
 
       {/* Blog Section */}
       <Blog />
-
-      {/* NRDS Section */}
-      <Nrds />
       
       {/* Community Spotlight: Video Testimonial */}
       <VideoTestimonial />
