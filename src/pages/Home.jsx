@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Team from '../components/home/team';
 import Impact from '../components/home/impact';
 import Documentation from '../components/home/documentation';
@@ -15,6 +15,32 @@ import VideoTestimonial from '../components/home/VideoTestimonial';
 import Contribute from '../components/home/contribute';
 
 const Home = () => {
+  useEffect(() => {
+    const scrollToSectionFromHash = () => {
+      const hash = window.location.hash || '';
+      const match = hash.match(/#\/#([^/?#]+)/);
+
+      if (!match) {
+        return;
+      }
+
+      const sectionId = decodeURIComponent(match[1]);
+      // delay slightly so sections are present after route render.
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 0);
+    };
+
+    scrollToSectionFromHash();
+    window.addEventListener('hashchange', scrollToSectionFromHash);
+
+    return () => {
+      window.removeEventListener('hashchange', scrollToSectionFromHash);
+    };
+  }, []);
 
 
   return (
