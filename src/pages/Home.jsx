@@ -16,6 +16,8 @@ import Contribute from '../components/home/contribute';
 
 const Home = () => {
   useEffect(() => {
+    const headingListeners = [];
+
     const scrollToSectionFromHash = () => {
       const hash = window.location.hash || '';
       const match = hash.match(/#\/#([^/?#]+)/);
@@ -34,11 +36,37 @@ const Home = () => {
       }, 0);
     };
 
+    const enableSectionHeaderLinks = () => {
+      const sections = document.querySelectorAll('section[id]');
+
+      sections.forEach((section) => {
+        const heading = section.querySelector('.section-heading, h1, h2');
+        if (!heading) {
+          return;
+        }
+
+        const sectionId = section.id;
+        const onClick = () => {
+          // Keep URLs like /#/#team.
+          window.location.hash = `/#${encodeURIComponent(sectionId)}`;
+        };
+
+        heading.classList.add('cursor-pointer');
+        heading.setAttribute('title', 'Click to get section URL');
+        heading.addEventListener('click', onClick);
+        headingListeners.push({ heading, onClick });
+      });
+    };
+
     scrollToSectionFromHash();
+    enableSectionHeaderLinks();
     window.addEventListener('hashchange', scrollToSectionFromHash);
 
     return () => {
       window.removeEventListener('hashchange', scrollToSectionFromHash);
+      headingListeners.forEach(({ heading, onClick }) => {
+        heading.removeEventListener('click', onClick);
+      });
     };
   }, []);
 
