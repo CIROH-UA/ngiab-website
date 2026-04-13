@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
+const STATUS_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amazonaws.com/status/dashboard.html';
+
 const Nrds = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isHoverPaused, setIsHoverPaused] = useState(false);
 
   const stats = [
-  { value: '2.7M', label: 'River reaches covered (CONUS)' },
+  { value: '20', label: 'VPUs' },
   { value: '4',    label: 'Live concurrent datastreams' },
   { value: 'Daily', label: 'Forecast cadence, mirrors NWM' },
   { value: '100%', label: 'Open source' },
@@ -52,6 +54,12 @@ const Nrds = () => {
       icon: 'fas fa-code-branch',
       title: 'Contribute to NextGen Configuration',
       description: 'Help improve streamflow predictions by updating parameters, calibration values, or realization files. Contributions help improve our community-driven hydrologic modeling ecosystem.',
+    },
+    {
+      href: STATUS_DASHBOARD_URL,
+      icon: 'fas fa-chart-line',
+      title: 'NRDS Status Dashboard',
+      description: 'Live operations dashboard for daily NRDS runs, including completion tracking by forecast setup and quick visibility into below-target days.',
     },
     {
       href: 'https://nrds.ciroh.org',
@@ -238,16 +246,6 @@ const Nrds = () => {
           </ul>
         </div>
 
-        <div className="flex justify-center mt-8">
-          <a
-            href="https://ngiab.ciroh.org/#/nrds"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary text-xl px-12 py-4"
-          >
-            Learn More about NRDS
-          </a>
-        </div>
       </div>
     </section>
   );
