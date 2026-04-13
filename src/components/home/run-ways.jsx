@@ -1,137 +1,54 @@
 import { useState } from 'react';
 
-const ways = [
+const runWaysTabs = [
   {
-    id: 'docker',
-    category: 'direct',
-    label: 'Docker (NGIAB-CloudInfra)',
-    title: 'Run NGIAB locally or in the Cloud with Docker',
+    id: 'jupyterhub',
+    label: 'CIROH-2i2c JupyterHub',
+    title: 'Run NextGen with Community NextGen Hub image (CCNH)',
     description:
-      'Run NGIAB using Docker on your local machine or in the AWS EC2 instances. This approach uses a Docker image to simplify environment setup and ensure reproducibility. Use NGIAB CloudInfra and the NGIAB 101 training materials to get started.',
-    link: 'https://ngiab.ciroh.org/training-NGIAB-101/installation.html',
-    learnMoreCta: 'NGIAB 101 Training',
+      'Run NextGen interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NextGen. The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
+    resources: [
+      {
+        cta: 'Open HydroShare Resource',
+        link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
+      },
+    ],
+  },
+  {
+    id: 'local-cloud',
+    label: 'Local and Cloud',
+    title: 'Run NGIAB locally or in the cloud',
+    description:
+      'Use NGIAB-CloudInfra or DataStreamCLI workflows to run NextGen in no time. Both can be run locally or in the cloud (like AWS EC2). Follow the NGIAB 101 training for cloudinfra, or the README for DataStreamCLI to get started.',
+    resources: [
+      {
+        cta: 'NGIAB 101 Training',
+        link: 'https://ngiab.ciroh.org/training-NGIAB-101/installation.html',
+      },
+      {
+        cta: 'DataStreamCLI README',
+        link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
+      },
+    ],
   },
   {
     id: 'hpc',
-    category: 'direct',
-    label: 'HPC (NGIAB-HPCInfra)',
+    label: 'HPC',
     title: 'Run NGIAB on HPC',
     description:
-      'Run large-scale NextGen simulations on HPC clusters. This approach uses a Singularity image to simplify environment setup. Follow the README to configure the environment and execute NGIAB on supported HPC clusters.',
-    link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
-    learnMoreCta: 'NGIAB-HPCInfra README',
-  },
-
-  {
-    id: 'platform',
-    category: 'direct',
-    label: 'CIROH-2i2c JupyterHub',
-    title: 'Run NGIAB from CIROH-2i2c JupyterHub',
-    description:
-      'Run NGIAB interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NGIAB.  The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
-    link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
-    learnMoreCta: 'Open HydroShare Resource',
-  },
-  {
-    id: 'datastreamcli',
-    category: 'workflow',
-    label: 'DataStreamCLI',
-    title: 'Run NGIAB using DataStreamCLI',
-    description:
-      'DataStreamCLI is a standalone tool that automates the complete workflow from preprocessing input data for NextGen to execution of the NextGen simulation through NextGen In a Box (NGIAB). DataStreamCLI serves as the workflow tooling for the NextGen Research DataStream. This software allows users to run NextGen in an efficient, relatively painless, and reproducible fashion while providing flexibility and integrations like forcingprocessor, hfsubset, NextGen In A Box, and TEEHR.',
-    link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
-    learnMoreCta: 'DataStreamCLI README',
-  },
-  {
-    id: 'preprocess',
-    category: 'workflow',
-    label: 'NGIAB Data Preprocess',
-    title: 'Run NGIAB using NGIAB Data Preprocess',
-    description:
-      'NGIAB Data Preprocess is a tool to generate standardized forcing files for NGIAB runs and to execute NextGen with a single command. The --run argument allows users to automatically run NGIAB using the generated outputs, simplifying local or cloud-based execution workflows.',
-    link: 'https://github.com/CIROH-UA/NGIAB_data_preprocess/?tab=readme-ov-file#cli-documentation',
-    learnMoreCta: 'NGIAB Data Preprocess README',
+      'Run large-scale NextGen simulations on HPC clusters. This approach uses a Singularity image to simplify environment setup. Follow the README to configure the environment and execute NGIAB on supported HPC clusters.Use HPC environments for larger NextGen simulations while following NGIAB onboarding guidance for setup and execution practices.',
+    resources: [
+      {
+        cta: 'NGIAB-HPCInfra README',
+        link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
+      },
+    ],
   },
 ];
 
 const RunWays = () => {
-  const workflowWays = ways.filter((w) => w.category === 'workflow');
-  const directWays = ways.filter((w) => w.category === 'direct');
-
-  const [activeTop, setActiveTop] = useState('workflow'); // 'workflow' | 'direct'
-  const [activeId, setActiveId] = useState(workflowWays[0]?.id ?? ways[0].id);
-
-  const active = ways.find((w) => w.id === activeId) ?? ways[0];
-
-  const handleTopChange = (section) => {
-    setActiveTop(section);
-    const group = section === 'workflow' ? workflowWays : directWays;
-    if (!group.find((w) => w.id === activeId) && group[0]) {
-      setActiveId(group[0].id);
-    }
-  };
-
-  const renderTabsAndContent = (groupWays, groupIntro) => {
-    return (
-      <div className="mt-4 space-y-6">
-        <p className="section-subheading  max-w-7xl mx-auto text-center text-gray-300">{groupIntro}</p>
-
-        <div className="flex flex-wrap justify-center gap-2">
-          {groupWays.map((way) => {
-            const isActive = way.id === activeId;
-            return (
-              <button
-                key={way.id}
-                type="button"
-                role="tab"
-                onClick={() => setActiveId(way.id)}
-                className={`px-4 py-2 rounded-lg text-xl font-medium transition-all duration-300 ease-in-out ${
-                  isActive
-                    ? 'bg-[#317D8C] text-white transform scale-105'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                }`}
-              >
-                {way.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="mt-4 grid md:grid-cols-2 gap-8 items-start text-center">
-          <div className="md:col-span-2">
-            <h3 className="text-3xl font-semibold mb-3 text-white">
-              {active.title}
-            </h3>
-            <p className="max-w-4xl text-center mx-auto text-xl text-gray-300 mb-4">
-              {active.description}
-            </p>
-          </div>
-          <div className="md:col-span-2">
-            <div className="max-w-md bg-gray-800 border border-gray-700 rounded-lg p-4 md:p-5 shadow-sm mx-auto">
-              <h4 className="text-xl font-semibold text-white mb-2">
-                Learn more
-              </h4>
-              <a
-                href={active.link}
-                target={active.link.startsWith('http') ? '_blank' : undefined}
-                rel={
-                  active.link.startsWith('http')
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
-                className="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium text-white bg-[rgb(49,125,140)] hover:bg-[rgb(39,105,118)] rounded-md transition-colors duration-200"
-              >
-                {active.learnMoreCta ?? 'Open resource'}
-                <span className="ml-2">
-                  <i className="fas fa-arrow-right" />
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const [activeId, setActiveId] = useState(runWaysTabs[0].id);
+  const active = runWaysTabs.find((way) => way.id === activeId) ?? runWaysTabs[0];
 
   return (
     <section className="bg-gray-900" id="run-ways">
@@ -143,44 +60,62 @@ const RunWays = () => {
     
         </div>
 
-        {/* Top-level tabs: workflow vs direct */}
-        <div className="mb-6 flex justify-center gap-2">
-          <button
-            type="button"
-            role="tab"
-            onClick={() => handleTopChange('workflow')}
-            className={`px-4 py-2 rounded-full text-2xl font-medium transition-all duration-300 ${
-              activeTop === 'workflow'
-                ? 'bg-[#317D8C] text-white shadow'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-            }`}
-          >
-            Workflow tools
-          </button>
-          <button
-            type="button"
-            role="tab"
-            onClick={() => handleTopChange('direct')}
-            className={`px-4 py-2 rounded-full text-2xl font-medium transition-all duration-300 ${
-              activeTop === 'direct'
-                ? 'bg-[#317D8C] text-white shadow'
-                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-            }`}
-          >
-            Run NGIAB directly
-          </button>
+        <div className="mb-6 flex flex-wrap justify-center gap-2">
+          {runWaysTabs.map((way) => {
+            const isActive = way.id === activeId;
+            return (
+              <button
+                key={way.id}
+                type="button"
+                role="tab"
+                onClick={() => setActiveId(way.id)}
+                className={`px-4 py-2 rounded-full text-2xl font-medium transition-all duration-300 ${
+                  isActive
+                    ? 'bg-[#317D8C] text-white shadow'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                }`}
+              >
+                {way.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Second-level tabs + content */}
-        {activeTop === 'workflow'
-          ? renderTabsAndContent(
-              workflowWays,
-              'Use these workflow tools to automate complete workflow from preprocessing input data to running NextGen simulations. Both datastreamcli and NGIAB preprocess run on the machine where they are installed. They can run on AWS EC2 instances, but neither tool by itself allows you to interact with them locally while performing the compute in the cloud.'
-            )
-          : renderTabsAndContent(
-              directWays,
-              'Use these options to run NGIAB directly on your local machine, in the cloud, or on HPC clusters. Unlike workflow tools, these approaches do not automate data preprocessing or orchestration. You are responsible for preparing input data and manually running NextGen simulations using the provided guide script.'
-            )}
+        <div className="mt-4 space-y-6">
+          <div className="mt-4 grid md:grid-cols-2 gap-8 items-start text-center">
+            <div className="md:col-span-2">
+              <h3 className="text-3xl font-semibold mb-3 text-white">
+                {active.title}
+              </h3>
+              <p className="max-w-4xl text-center mx-auto text-xl text-gray-300 mb-4">
+                {active.description}
+              </p>
+            </div>
+            <div className="md:col-span-2">
+              <div className="max-w-md bg-gray-800 border border-gray-700 rounded-lg p-4 md:p-5 shadow-sm mx-auto">
+                <h4 className="text-xl font-semibold text-white mb-2">
+                  Learn more
+                </h4>
+                <div className="space-y-3">
+                  {active.resources.map((resource) => (
+                    <a
+                      key={resource.cta}
+                      href={resource.link}
+                      target={resource.link.startsWith('http') ? '_blank' : undefined}
+                      rel={resource.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium text-white bg-[rgb(49,125,140)] hover:bg-[rgb(39,105,118)] rounded-md transition-colors duration-200"
+                    >
+                      {resource.cta}
+                      <span className="ml-2">
+                        <i className="fas fa-arrow-right" />
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
