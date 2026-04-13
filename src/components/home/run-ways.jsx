@@ -1,20 +1,7 @@
 import { useState } from 'react';
 
 const runWaysTabs = [
-  {
-    id: 'jupyterhub',
-    label: 'CIROH-2i2c JupyterHub',
-    title: 'Run NextGen with Community NextGen Hub image (CCNH)',
-    description:
-      'Run NextGen interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NextGen. The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
-    resources: [
-      {
-        cta: 'Open HydroShare Resource',
-        link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
-      },
-    ],
-  },
-  {
+   {
     id: 'local-cloud',
     label: 'Local and Cloud',
     title: 'Run NGIAB locally or in the cloud',
@@ -28,6 +15,19 @@ const runWaysTabs = [
       {
         cta: 'DataStreamCLI README',
         link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
+      },
+    ],
+  },
+  {
+    id: 'jupyterhub',
+    label: 'CIROH-2i2c JupyterHub',
+    title: 'Run NextGen with Community NextGen Hub image (CCNH)',
+    description:
+      'Run NextGen interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NextGen. The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
+    resources: [
+      {
+        cta: 'Open HydroShare Resource',
+        link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
       },
     ],
   },
