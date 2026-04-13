@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const STATUS_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amazonaws.com/status/dashboard.html';
 
 const Nrds = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isHoverPaused, setIsHoverPaused] = useState(false);
-
   const stats = [
   { value: '20', label: 'VPUs' },
   { value: '4',    label: 'Live concurrent datastreams' },
@@ -75,18 +72,6 @@ const Nrds = () => {
     },
   ];
 
-  useEffect(() => {
-    if (isHoverPaused) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % 2);
-    },5000); // Rotate every 5 seconds
-
-    return () => clearInterval(timer);
-  }, [isHoverPaused]);
-
   return (
     <section id="nrds" className="bg-gradient-to-b from-slate-50 to-white py-20">
       <div className="container mx-auto max-w-7xl px-4">
@@ -124,86 +109,53 @@ const Nrds = () => {
           ))}
         </div>
 
-        {/* Combined Carousel: Explore Resources and Active Datastreams */}
-        <div
-          className="max-w-5xl mx-auto mb-10"
-          onMouseEnter={() => setIsHoverPaused(true)}
-          onMouseLeave={() => setIsHoverPaused(false)}
-        >
+        <div className="max-w-5xl mx-auto mb-10">
           <div className="text-center mb-4">
-            <h4 className="text-2xl font-semibold text-gray-900">{carouselIndex === 0 ? 'Explore NRDS resources' : 'Active datastreams'}</h4>
+            <h4 className="text-2xl font-semibold text-gray-900">Explore NRDS resources</h4>
           </div>
-
-          <div className="overflow-hidden rounded-xl">
-            <div
-              className="flex transition-transform duration-700 ease-in-out"
-              style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
-            >
-              <div className="w-full flex-shrink-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {resources.map((resource) => (
-                    <a
-                      key={resource.title}
-                      href={resource.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block border border-slate-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[rgb(49,125,140)] text-white shrink-0">
-                          <i className={`${resource.icon} text-lg`} />
-                        </div>
-                        <h4 className="text-xl font-semibold text-gray-900 group-hover:text-[rgb(49,125,140)] transition-colors">
-                          {resource.title}
-                        </h4>
-                      </div>
-                      <p className="text-gray-600">{resource.description}</p>
-                    </a>
-                  ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {resources.map((resource) => (
+              <a
+                key={resource.title}
+                href={resource.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border border-slate-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-[rgb(49,125,140)] text-white shrink-0">
+                    <i className={`${resource.icon} text-lg`} />
+                  </div>
+                  <h4 className="text-xl font-semibold text-gray-900 group-hover:text-[rgb(49,125,140)] transition-colors">
+                    {resource.title}
+                  </h4>
                 </div>
-              </div>
-
-              <div className="w-full flex-shrink-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {datastreams.map((ds) => (
-                    <div
-                      key={ds.name}
-                      className="group border border-slate-200 rounded-xl p-5 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-                    >
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium w-fit ${ds.badgeColor}`}>
-                          {ds.badge}
-                        </span>
-                        <span className="text-xs text-gray-500 border border-slate-200 rounded-full px-2 py-1">{ds.cadence}</span>
-                      </div>
-                      <h5 className="text-xl font-semibold text-gray-900 mb-2">{ds.name}</h5>
-                      <p className="text-gray-600">{ds.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+                <p className="text-gray-600">{resource.description}</p>
+              </a>
+            ))}
           </div>
+        </div>
 
-          <div className="mt-4 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => setCarouselIndex((prev) => (prev - 1 + 2) % 2)}
-              aria-label="Show previous slide"
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-300 bg-white text-slate-600 hover:text-[rgb(49,125,140)] hover:border-[rgb(49,125,140)] transition-colors"
-            >
-              <i className="fas fa-chevron-left text-xs" />
-            </button>
-
-
-            <button
-              type="button"
-              onClick={() => setCarouselIndex((prev) => (prev + 1) % 2)}
-              aria-label="Show next slide"
-              className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-slate-300 bg-white text-slate-600 hover:text-[rgb(49,125,140)] hover:border-[rgb(49,125,140)] transition-colors"
-            >
-              <i className="fas fa-chevron-right text-xs" />
-            </button>
+        <div className="max-w-5xl mx-auto mb-10">
+          <div className="text-center mb-4">
+            <h4 className="text-2xl font-semibold text-gray-900">Active datastreams</h4>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {datastreams.map((ds) => (
+              <div
+                key={ds.name}
+                className="group border border-slate-200 rounded-xl p-5 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium w-fit ${ds.badgeColor}`}>
+                    {ds.badge}
+                  </span>
+                  <span className="text-xs text-gray-500 border border-slate-200 rounded-full px-2 py-1">{ds.cadence}</span>
+                </div>
+                <h5 className="text-xl font-semibold text-gray-900 mb-2">{ds.name}</h5>
+                <p className="text-gray-600">{ds.description}</p>
+              </div>
+            ))}
           </div>
         </div>
 
