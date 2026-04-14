@@ -95,7 +95,7 @@ const Nrds = () => {
 
         {/* Stats: NRDS at a Glance section */}
         <div className="max-w-5xl mx-auto mb-4 text-center">
-          <h4 className="text-2xl font-semibold text-gray-900">NRDS at a Glance</h4>
+          <h4 className="sm:text-3xl text-2xl font-semibold text-gray-900">NRDS at a Glance</h4>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-10">
           {stats.map((stat) => (
@@ -108,10 +108,88 @@ const Nrds = () => {
             </div>
           ))}
         </div>
+        <div className="mt-16 mb-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+          <h3 className="text-center sm:text-3xl text-2xl font-semibold mb-8">NRDS Repositories</h3>
+          <p className="text-center text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            Use these repositories together to fetch, orchestrate, and iterate on NRDS forcing data,
+            CLI-driven workflows, and long-running NextGen simulations.
+          </p>
 
-        <div className="max-w-5xl mx-auto mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Forcing Processor',
+                description: 'Maps NWM forcings and channel routing data onto the NextGen Hydrofabric',
+                badge: 'Data Preparation',
+                image: '/assets/img/tool/forcingprocessor.png',
+                repo: 'https://github.com/CIROH-UA/forcingprocessor',
+                issues: 'https://github.com/CIROH-UA/forcingprocessor/issues/new',
+              },
+              {
+                title: 'Datastream CLI',
+                description: 'An all-in-one tool for running reproducible NextGen simulations with NGIAB.',
+                badge: 'Workflow Automation',
+                image: '/assets/img/tool/datastreamcli.png',
+                repo: 'https://github.com/CIROH-UA/datastreamcli',
+                issues: 'https://github.com/CIROH-UA/datastreamcli/issues/new',
+              },
+              {
+                title: 'NGEN-DataStream',
+                description: 'AWS infrastructure for ForcingProcessor and DataStreamCLI, powering NRDS - NGIAB containerized hydrologic simulations to support research-to-operations.',
+                badge: 'Cloud Infrastructure',
+                image: '/assets/img/tool/nrds.png',
+                repo: 'https://github.com/CIROH-UA/ngen-datastream',
+                issues: 'https://github.com/CIROH-UA/ngen-datastream/issues/new',
+              },
+            ].map((tool, idx) => (
+              <div
+                key={idx}
+                className="tool-card group"
+                data-aos="fade-up"
+                data-aos-duration="800"
+                data-aos-delay={250 + idx * 100}
+              >
+                <div className="tool-image-wrapper">
+                  <img
+                    className="tool-image"
+                    src={tool.image}
+                    alt={tool.title}
+                  />
+                  <div className="tool-overlay"></div>
+                  <div className="tool-badge">{tool.badge}</div>
+                </div>
+                <div className="tool-content">
+                  <h4 className="tool-title">{tool.title}</h4>
+                  <p className="tool-description">{tool.description}</p>
+                </div>
+                <div className="tool-links">
+                  <a
+                    href={tool.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tool-link"
+                  >
+                    <i className="fab fa-github" />
+                    <span>View Source Code</span>
+                  </a>
+                  <a
+                    href={tool.issues}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tool-link"
+                  >
+                    <i className="fas fa-comment-dots" />
+                    <span>Feedback</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto mb-10 mt-10">
           <div className="text-center mb-4">
-            <h4 className="text-2xl font-semibold text-gray-900">Explore NRDS resources</h4>
+            <h4 className="sm:text-3xl text-2xl font-semibold text-gray-900">Explore NRDS resources</h4>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {resources.map((resource) => (
@@ -138,7 +216,7 @@ const Nrds = () => {
 
         <div className="max-w-5xl mx-auto mb-10">
           <div className="text-center mb-4">
-            <h4 className="text-2xl font-semibold text-gray-900">Active datastreams</h4>
+            <h4 className="sm:text-3xl text-2xl font-semibold text-gray-900">Active datastreams</h4>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {datastreams.map((ds) => (
@@ -157,45 +235,6 @@ const Nrds = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="max-w-5xl mx-auto mt-8 border border-slate-200 rounded-xl p-6 bg-gradient-to-r from-slate-50 to-white">
-          <h4 className="text-xl font-semibold text-gray-900 mb-3">NRDS GitHub Repositories</h4>
-          <ul className="flex flex-wrap gap-3 text-gray-700">
-            <li>
-              <a
-                href="https://github.com/CIROH-UA/forcingprocessor"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold text-[rgb(49,125,140)] hover:bg-slate-50"
-              >
-                <i className="fab fa-github mr-2" />
-                Forcing Processor
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/CIROH-UA/datastreamcli"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold text-[rgb(49,125,140)] hover:bg-slate-50"
-              >
-                <i className="fab fa-github mr-2" />
-                Datastream CLI
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/CIROH-UA/ngen-datastream"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold text-[rgb(49,125,140)] hover:bg-slate-50"
-              >
-                <i className="fab fa-github mr-2" />
-                NGEN-DataStream
-              </a>
-            </li>
-          </ul>
         </div>
 
       </div>
