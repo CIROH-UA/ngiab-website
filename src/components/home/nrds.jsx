@@ -1,6 +1,7 @@
 import React from 'react';
 
 const STATUS_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amazonaws.com/status/dashboard.html';
+const SCHEDULER_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amazonaws.com/status/nrds-schedule.html';
 
 const Nrds = () => {
   const stats = [
@@ -57,6 +58,12 @@ const Nrds = () => {
       icon: 'fas fa-chart-line',
       title: 'NRDS Status Dashboard',
       description: 'Live operations dashboard for daily NRDS runs, including completion tracking by forecast setup and quick visibility into below-target days.',
+    },
+    {
+      href: SCHEDULER_DASHBOARD_URL,
+      icon: 'fas fa-chart-line',
+      title: 'NRDS Scheduler Dashboard',
+      description: 'Live dashboard showing the status of all scheduled NRDS runs, including upcoming runs, in-progress runs, and recent runs.',
     },
     {
       href: 'https://nrds.ciroh.org',
