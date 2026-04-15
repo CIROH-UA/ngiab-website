@@ -8,6 +8,7 @@ on:
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
+  STAGING_PATH: staging
   TARGET_PATH: staging/${{ github.event.pull_request.number }}
 
 concurrency:
