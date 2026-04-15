@@ -28,7 +28,7 @@ const runWaysTabs = [
       {
          cta: 'NextGen on CIROH-2i2c JupyterHub Tutorial',
          link: 'https://hub.ciroh.org/docs/products/ngiab/distributions/nextgen-2i2c/',
-      }
+      },
       {
         cta: 'CCNH Notebooks and Scripts on HydroShare',
         link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
