@@ -5,7 +5,6 @@ const PACKAGE_NAME = 'NGIAB-data-preprocess';
 const TRACKED_VERSIONS = ['4.6.7', '4.6.6', '4.6.5', '4.6.4', '4.6.3'];
 const DAYS_IN_THREE_MONTHS = 90;
 const PEPY_PAGE_URL = 'https://pepy.tech/projects/ngiab-data-preprocess?timeRange=threeMonths&category=version&includeCIDownloads=true&granularity=daily&viewType=line&versions=4.6.7%2C4.6.6%2C4.6.5%2C4.6.4%2C4.6.3';
-const STATUS_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amazonaws.com/status/dashboard.html';
 const TARGET_PULLS = 15000;
 
 const DockerPullCounter = () => {
@@ -24,15 +23,6 @@ const DockerPullCounter = () => {
   const [totalDownloads, setTotalDownloads] = useState(0);
   const [versionTotals, setVersionTotals] = useState({});
   const [recentTotal, setRecentTotal] = useState(0);
-  const [dashboardInfo, setDashboardInfo] = useState({
-    loading: true,
-    lastUpdated: '',
-    dataFetchDuration: '',
-    latestDate: '',
-    latestComplete: '',
-    latestTotal: '',
-    latestPercent: '',
-  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -169,59 +159,6 @@ const DockerPullCounter = () => {
       }
     };
 
-    const fetchDashboardInfo = async () => {
-      try {
-        const response = await fetch(STATUS_DASHBOARD_URL);
-        if (!response.ok) {
-          throw new Error(`Dashboard request failed with status ${response.status}`);
-        }
-
-        const html = await response.text();
-        const flattened = html.replace(/\s+/g, ' ');
-
-        const updatedMatch = flattened.match(/Last updated:\s*([^|<]+?)\s*\|\s*Data fetched in\s*([0-9.]+s)/i);
-        const completionMatch = flattened.match(/(\d{4}-\d{2}-\d{2})\s*(\d+)\s*\/\s*(\d+)\s*\(([\d.]+)%\)/);
-
-        let lastUpdated = 'N/A';
-        let dataFetchDuration = 'N/A';
-        let latestDate = 'N/A';
-        let latestComplete = 'N/A';
-        let latestTotal = 'N/A';
-        let latestPercent = 'N/A';
-
-        if (updatedMatch && updatedMatch[1] && updatedMatch[2]) {
-          lastUpdated = updatedMatch[1].trim();
-          dataFetchDuration = updatedMatch[2].trim();
-        } else {
-          console.warn('Dashboard HTML parsing warning: could not extract "Last updated" and data fetch duration from status dashboard.');
-        }
-
-        if (completionMatch && completionMatch[1] && completionMatch[2] && completionMatch[3] && completionMatch[4]) {
-          latestDate = completionMatch[1];
-          latestComplete = completionMatch[2];
-          latestTotal = completionMatch[3];
-          latestPercent = completionMatch[4];
-        } else {
-          console.warn('Dashboard HTML parsing warning: could not extract completion statistics from status dashboard.');
-        }
-
-        setDashboardInfo({
-          loading: false,
-          lastUpdated,
-          dataFetchDuration,
-          latestDate,
-          latestComplete,
-          latestTotal,
-          latestPercent,
-        });
-      } catch (fetchError) {
-        console.error('Error fetching dashboard info:', fetchError);
-        setDashboardInfo((previous) => ({ ...previous, loading: false }));
-        // Rethrow so the polling scheduler can apply backoff on failures
-        throw fetchError;
-      }
-    };
-
     const BASE_POLLING_INTERVAL = 300000; // 5 minutes
     const MAX_POLLING_INTERVAL = 3600000; // 60 minutes cap for backoff
     let currentInterval = BASE_POLLING_INTERVAL;
@@ -232,7 +169,6 @@ const DockerPullCounter = () => {
         await Promise.all([
           fetchDockerCount(),
           fetchPepyStats(),
-          fetchDashboardInfo(),
         ]);
         // On success, reset to the base polling interval
         currentInterval = BASE_POLLING_INTERVAL;
@@ -377,39 +313,6 @@ const DockerPullCounter = () => {
             </div>
           </div>
         )}
-      </div>
-
-      <div className="border-t border-gray-100 pt-8">
-        <a
-          href={STATUS_DASHBOARD_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors duration-200"
-        >
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <h4 className="text-xl font-semibold text-gray-800">NRDS Status Dashboard</h4>
-              <p className="text-gray-600 mt-1">
-                Live operations dashboard for daily NRDS runs, including completion tracking by forecast setup and quick visibility into below-target days.
-              </p>
-              {dashboardInfo.loading ? (
-                <p className="text-sm text-gray-500 mt-3">Loading latest dashboard details...</p>
-              ) : (
-                <div className="mt-3 space-y-1 text-sm text-gray-500">
-                  {dashboardInfo.lastUpdated && (
-                    <p>
-                      Last updated: {dashboardInfo.lastUpdated}
-                      {dashboardInfo.dataFetchDuration ? ` • Data fetched in ${dashboardInfo.dataFetchDuration}` : ''}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-            <div className="text-primary shrink-0">
-              <i className="fas fa-arrow-up-right-from-square text-xl"></i>
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   );
