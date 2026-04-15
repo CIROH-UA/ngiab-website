@@ -72,10 +72,10 @@ const Nrds = () => {
       description: 'Interactive map-based interface to explore streamflow predictions and forecast performance.',
     },
     {
-      href: 'https://communityhydrofabric.s3.us-east-1.amazonaws.com/index.html',
+      href: 'https://communityhydrofabric.s3.us-east-1.amazonaws.com/datastream_viewer.html',
       icon: 'fas fa-project-diagram',
-      title: 'Community Hydrofabric Explorer',
-      description: 'Browse and visualize the community hydrofabric geospatial data and stream network.',
+      title: 'T-route Flow Visualizer',
+      description: 'Visualize NRDS outputs by selecting T-route output file directly from S3 bucket.',
     },
   ];
 
