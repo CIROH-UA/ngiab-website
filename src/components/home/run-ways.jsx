@@ -6,7 +6,7 @@ const runWaysTabs = [
     label: 'Local and Cloud',
     title: 'Run NGIAB locally or in the cloud',
     description:
-      'Use NGIAB-CloudInfra or DataStreamCLI workflows to run NextGen in no time. Both can be run locally or in the cloud (like AWS EC2). Follow the NGIAB 101 training for cloudinfra, or the README for DataStreamCLI to get started.',
+      'Use the NGIAB-CloudInfra or DataStreamCLI workflows to run NextGen in no time. Both can be run locally or in the cloud, such as via AWS EC2. Follow the NGIAB 101 training for CloudInfra or the README for DataStreamCLI to get started.',
     resources: [
       {
         cta: 'NGIAB 101 Training',
@@ -14,7 +14,7 @@ const runWaysTabs = [
       },
       {
         cta: 'DataStreamCLI README',
-        link: 'https://github.com/CIROH-UA/datastreamcli?tab=readme-ov-file#run-datastreamcli',
+        link: 'https://hub.ciroh.org/docs/products/research-datastream/datastreamcli/',
       },
     ],
   },
@@ -23,10 +23,14 @@ const runWaysTabs = [
     label: 'CIROH-2i2c JupyterHub',
     title: 'Run NextGen with Community NextGen Hub image (CCNH)',
     description:
-      'Run NextGen interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NextGen. The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly in CIROH-2i2c JupyterHub.',
+      'Run NextGen interactively in Jupyter notebooks through CIROH-2i2c JupyterHub. Select the CIROH Community NextGen Hub image to set up the environment for running NextGen. The linked HydroShare resource includes example notebooks and instructions. Use the “Open with” button on HydroShare to launch the notebooks directly into CIROH-2i2c JupyterHub.',
     resources: [
       {
-        cta: 'Open HydroShare Resource',
+         cta: 'NextGen on CIROH-2i2c JupyterHub Tutorial',
+         link: 'https://hub.ciroh.org/docs/products/ngiab/distributions/nextgen-2i2c/',
+      }
+      {
+        cta: 'CCNH Notebooks and Scripts on HydroShare',
         link: 'https://www.hydroshare.org/resource/27045581bdea4808a393330f2417379c/',
       },
     ],
@@ -36,11 +40,11 @@ const runWaysTabs = [
     label: 'HPC',
     title: 'Run NGIAB on HPC',
     description:
-      'Run large-scale NextGen simulations on HPC clusters. This approach uses a Singularity image to simplify environment setup. Follow the README to configure the environment and execute NGIAB on supported HPC clusters.Use HPC environments for larger NextGen simulations while following NGIAB onboarding guidance for setup and execution practices.',
+      'Run large-scale NextGen simulations on HPC clusters. This approach uses a Singularity image to simplify environment setup. Follow the README to configure the environment and execute NGIAB on supported HPC clusters. Use HPC environments for larger NextGen simulations while following NGIAB onboarding guidance for setup and execution practices.',
     resources: [
       {
         cta: 'NGIAB-HPCInfra README',
-        link: 'https://github.com/CIROH-UA/ngiab-hpcinfra?tab=readme-ov-file#prerequisites',
+        link: 'https://hub.ciroh.org/docs/products/ngiab/distributions/ngiab-singularity/',
       },
     ],
   },
