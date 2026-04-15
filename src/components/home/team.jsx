@@ -332,7 +332,7 @@ const Team = () => {
                   alt={`${member.name} Avatar`} 
                 />
               </div>
-              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h3 className="mb-1 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">
                 {member.name}
               </h3>
               <p className="transition-colors duration-300">{member.role}</p>
