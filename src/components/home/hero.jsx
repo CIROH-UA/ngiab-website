@@ -56,7 +56,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-black bg-opacity-20"></div>
               
               {/* Combined Announcements */}
-              <div className="absolute top-16 2xl:top-20 left-0 right-0 z-20">
+              <div className="absolute top-3 md:top-2 left-0 right-0 z-20">
                 <div className="container mx-auto px-4">
                   <motion.div
                     className="bg-black/40 backdrop-blur-md rounded-lg p-6 max-w-4xl mx-auto border border-white/20"
