@@ -99,15 +99,7 @@ const Team = () => {
       email: "jlaser@lynker.com",
       department: "lynker"
     },
-    {
-      name: "Trupesh Patel",
-      role: "High Performance Computing Systems Administrator II",
-      image: "assets/img/team/Trupesh-Patel.jpg",
-      github: "https://github.com/TrupeshKumarPatel",
-      linkedin: "https://www.linkedin.com/in/trupeshkumarpatel",
-      email: "tpatel2@ua.edu",
-      department: "awi"
-    },
+
     {
       name: "Giovanni Romero",
       role: "Hydroinformatics Engineer",
@@ -180,6 +172,15 @@ const Team = () => {
       email: "svemula1@ua.edu",
       department: "awi"
     },
+        {
+      name: "Manjila Singh",
+      role: "DevOps Engineer",
+      image: "assets/img/team/Me.jpg",
+      github: "https://github.com/manjilasingh",
+      linkedin: "https://www.linkedin.com/in/manjilasingh/",
+      email: "msingh9@crimson.ua.edu",
+      department: "awi"
+    },
     {
       name: "Benjamin Perry",
       role: "Software Scientist",
@@ -199,12 +200,12 @@ const Team = () => {
       department: "cs"
     },
     {
-      name: "Manjila Singh",
-      role: "Graduate Research Assitant",
-      image: "assets/img/team/Me.jpg",
-      github: "https://github.com/manjilasingh",
-      linkedin: "https://www.linkedin.com/in/manjilasingh/",
-      email: "msingh9@crimson.ua.edu",
+      name: "Pratiksha Chaudhari",
+      role: "Graduate Research Assistant",
+      image: "assets/img/team/Pratiksha-Chaudhari.jpg",
+      github: "https://github.com/pratikshac15",
+      linkedin: "https://www.linkedin.com/in/pratikshac15/",
+      email: "pgchaudhari@crimson.ua.edu",
       department: "cs"
     },
     {

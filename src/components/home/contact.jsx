@@ -49,13 +49,13 @@ const Contact = () => {
                             <li class="flex items-center">
                                 <i class="fas fa-envelope text-primary mr-3"></i>
                                 <a href="mailto:ciroh-it-support@ua.edu" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Email: ciroh-it-admin@ua.edu
+                                    Email: ciroh-it-support@ua.edu
                                 </a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fab fa-slack text-primary mr-3"></i>
                                 <a href="https://cirohworkspace.slack.com/archives/C057BLQB867" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Slack: #ciroh-ua-it-support
+                                    Slack: #nextgen_ngiab_nrds_discussion
                                 </a>
                             </li>
                             
@@ -66,7 +66,7 @@ const Contact = () => {
                 <div class="mt-16 text-center">
                     <div class="inline-block bg-gray-800 rounded-lg px-8 py-6 max-w-5xl">
                         <p class="text-md text-gray-400 italic">
-                            NextGen in a Box is provided under the 
+                            NextGen In A Box is provided under the 
                             open-source <b>
                             <a href="https://github.com/CIROH-UA/NGIAB-CloudInfra/blob/main/LICENSE" class="text-gray-300 hover:text-primary transition duration-300" target="_blank" rel="noopener noreferrer">
                                 MIT License
