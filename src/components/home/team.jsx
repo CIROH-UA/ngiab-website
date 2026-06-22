@@ -178,7 +178,7 @@ const Team = () => {
       image: "assets/img/team/Me.jpg",
       github: "https://github.com/manjilasingh",
       linkedin: "https://www.linkedin.com/in/manjilasingh/",
-      email: "msingh9@crimson.ua.edu",
+      email: "msingh9@ua.edu",
       department: "awi"
     },
     {
