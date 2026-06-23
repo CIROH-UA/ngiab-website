@@ -17,6 +17,7 @@ const Nrds = () => {
     name: 'CFE + Noah-OWP-Modular + t-route',
     description: 'Full NextGen hydrology + routing, per-VPU across CONUS',
     cadence: 'Hourly / 6-hr / 240-hr',
+    link: 'https://datastream.ciroh.org/',
   },
   {
     badge: 'ML',
@@ -24,6 +25,7 @@ const Nrds = () => {
     name: 'LSTM streamflow forecasting',
     description: 'Deep learning model within the NextGen BMI framework',
     cadence: 'NWM cadence',
+    link: 'https://datastream.ciroh.org/',
   },
   {
     badge: 'Routing-only',
@@ -31,6 +33,7 @@ const Nrds = () => {
     name: 't-route on NWM hydrologic output',
     description: 'Consumes NWM output directly; no NextGen hydrologic sim',
     cadence: 'NWM cadence',
+    link: 'https://datastream.ciroh.org/',
   },
   {
     badge: 'Forcing',
@@ -38,6 +41,15 @@ const Nrds = () => {
     name: 'Forcing processor (CONUS)',
     description: 'Gridded NWM forcings → catchment-averaged NextGen inputs for all downstream streams',
     cadence: 'Daily',
+    link: 'https://datastream.ciroh.org/',
+  },
+  {
+    badge: 'qkrig',
+    badgeColor: 'bg-pink-100 text-pink-700',
+    name: 'qkriging',
+    description: 'CAMELS discharge observations → kriging-based interpolation and uncertainty estimates',
+    cadence: 'Hourly',
+    link: 'https://datastream.ciroh.org/',
   },
 ];
   const resources = [
@@ -227,9 +239,12 @@ const Nrds = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {datastreams.map((ds) => (
-              <div
+              <a
                 key={ds.name}
-                className="group border border-slate-200 rounded-xl p-5 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                href={ds.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border border-slate-200 rounded-xl p-5 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium w-fit ${ds.badgeColor}`}>
@@ -237,9 +252,9 @@ const Nrds = () => {
                   </span>
                   <span className="text-xs text-gray-500 border border-slate-200 rounded-full px-2 py-1">{ds.cadence}</span>
                 </div>
-                <h5 className="text-xl font-semibold text-gray-900 mb-2">{ds.name}</h5>
+               <h5 className="text-xl font-semibold text-gray-900 mb-2">{ds.name}</h5>
                 <p className="text-gray-600">{ds.description}</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>

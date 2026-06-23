@@ -109,7 +109,11 @@ const DockerPullCounter = () => {
       const apiEndpoint = useProxy
         ? `/pepy-api/api/v2/projects/${PACKAGE_NAME}`
         : `${baseUrl}/api/v2/projects/${PACKAGE_NAME}`;
-      const staticStatsPath = `${import.meta.env.BASE_URL}pepy-stats.json`;
+      const basePath = import.meta.env.BASE_URL.endsWith('/')
+        ? import.meta.env.BASE_URL
+        : `${import.meta.env.BASE_URL}/`;
+
+      const staticStatsPath = `${basePath}pepy-stats.json`;
 
       try {
         let response;
