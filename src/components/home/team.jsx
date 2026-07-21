@@ -15,6 +15,7 @@ const Team = () => {
     { id: 'rti', label: 'RTI International' },
     { id: 'aquaveo', label: 'Aquaveo' },
     { id: 'uv', label: 'Univerity of Vermont' },
+    { id: 'usu', label: 'Utah State University' },
     { id: 'nwc', label: 'National Water Center'}
   ];
 
@@ -172,7 +173,7 @@ const Team = () => {
       email: "svemula1@ua.edu",
       department: "awi"
     },
-        {
+    {
       name: "Manjila Singh",
       role: "DevOps Engineer",
       image: "assets/img/team/Me.jpg",
@@ -234,6 +235,24 @@ const Team = () => {
       linkedin: "https://www.linkedin.com/in/sonam-lama-139821209/",
       email: "slama@.ua.edu",
       department: "awi"
+    },
+    {
+      name: "Ayman Nassar",
+      role: "Postdoctoral Researcher",
+      image: "assets/img/team/Ayman-Nassar.png",
+      github: "",
+      linkedin: "https://www.linkedin.com/in/ayman-nassar-24a92723/",
+      email: "ayman.nassar@usu.edu",
+      department: "usu"
+    },
+    {
+      name: "David Tarboton",
+      role: "Professor",
+      image: "assets/img/team/David-Tarboton.jpg",
+      github: "https://github.com/dtarb",
+      linkedin: "https://www.linkedin.com/in/dtarb/",
+      email: "david.tarboton@usu.edu",
+      department: "usu"
     },
     {
       name: "Steven J. Burian",
