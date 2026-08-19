@@ -6,7 +6,7 @@ const SCHEDULER_DASHBOARD_URL = 'https://ciroh-community-ngen-datastream.s3.amaz
 const Nrds = () => {
   const stats = [
   { value: '20', label: 'VPUs' },
-  { value: '4',    label: 'Live concurrent datastreams' },
+  { value: '6',    label: 'Live concurrent datastreams' },
   { value: 'Daily', label: 'Forecast cadence, mirrors NWM' },
   { value: '100%', label: 'Open source' },
   ];
