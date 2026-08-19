@@ -18,13 +18,13 @@ const Contact = () => {
                         <ul class="space-y-4">
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle text-primary mr-3"></i>
-                                <a href="https://docs.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Learn about the NGIAB platform on DocuHub
+                                <a href="https://hub.ciroh.org/docs/products/ngiab/" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                    Learn about the NGIAB platform on CIROH Hub.
                                 </a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle text-primary mr-3"></i>
-                                <a href="https://docs.ciroh.org/docs/products/Community%20Hydrologic%20Modeling%20Framework/ngiabOfficeHours" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
+                                <a href="https://hub.ciroh.org/docs/products/ngiab/office-hours" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
                                     Join the NextGen Community Office Hours
                                 </a>
                             </li>
@@ -49,19 +49,32 @@ const Contact = () => {
                             <li class="flex items-center">
                                 <i class="fas fa-envelope text-primary mr-3"></i>
                                 <a href="mailto:ciroh-it-support@ua.edu" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Email: ciroh-it-admin@ua.edu
+                                    Email: ciroh-it-support@ua.edu
                                 </a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fab fa-slack text-primary mr-3"></i>
                                 <a href="https://cirohworkspace.slack.com/archives/C057BLQB867" class="text-gray-300 hover:text-primary transition duration-300 tool-link" target="_blank" rel="noopener noreferrer">
-                                    Slack: #ciroh-ua-it-support
+                                    Slack: #nextgen_ngiab_nrds_discussion
                                 </a>
                             </li>
                             
                         </ul>
                     </div>
                 </div> 
+
+                <div class="mt-16 text-center">
+                    <div class="inline-block bg-gray-800 rounded-lg px-8 py-6 max-w-5xl">
+                        <p class="text-md text-gray-400 italic">
+                            NextGen In A Box is provided under the 
+                            open-source <b>
+                            <a href="https://github.com/CIROH-UA/NGIAB-CloudInfra/blob/main/LICENSE" class="text-gray-300 hover:text-primary transition duration-300" target="_blank" rel="noopener noreferrer">
+                                MIT License
+                            </a>
+                            </b>. That means you are free to modify, publish, or redistribute it however you like, as long as you provide the license notice with any copy of the software.
+                        </p>
+                    </div>
+                </div>
 
                 <div class="mt-16 text-center">
                     <div class="inline-block bg-gray-800 rounded-lg px-8 py-6 max-w-5xl">
