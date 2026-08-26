@@ -14,7 +14,7 @@ on:
 permissions:
   artifact-metadata: write
   contents: read
-  pull_request: write
+  pull-requests: write
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
@@ -46,9 +46,9 @@ jobs:
       - name: Parse payload inputs
         id: parse-json
         env:
-          TEMP_NUM: fromJson(steps.extract-json.outputs.payload_json).pr_number
-          TEMP_ID: fromJson(steps.extract-json.outputs.payload_json).build_id
-          TEMP_SN: fromJson(steps.extract-json.outputs.payload_json).should_notify
+          TEMP_NUM: ${{ fromJson(steps.extract-json.outputs.payload_json).pr_number }}
+          TEMP_ID: ${{ fromJson(steps.extract-json.outputs.payload_json).build_id }}
+          TEMP_SN: ${{ fromJson(steps.extract-json.outputs.payload_json).should_notify }}
         run: |
           echo "PR_NUMBER=$TEMP_NUM" >> $GITHUB_ENV
           echo "BUILD_ID=$TEMP_ID" >> $GITHUB_ENV
@@ -59,6 +59,9 @@ jobs:
           INT_REGEX='^[0-9]+$'
           if !["$PR_NUMBER" =~ "$INT_REGEX"]; then
             echo "Provided PR number '${PR_NUMBER}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          elif !["$BUILD_ID" =~ "$INT_REGEX"]; then
+            echo "Provided build id '${BUILD_ID}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
           echo "TARGET_PATH=staging/$PR_NUMBER" >> $GITHUB_ENV
