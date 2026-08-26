@@ -74,13 +74,14 @@ jobs:
           BUILD_ID: ${{ steps.upload-build.outputs.artifact-id }}
           SHOULD_NOTIFY: ${{ vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true' && github.event.action == 'labeled' && github.event.label.name == 'preview on staging' }}
         run: |
-          echo {"pr_number": "${PR_NUMBER}", "build_id": "${BUILD_ID}", "should_notify": "${SHOULD_NOTIFY}"} > ${{ runner.temp }}/payloads/pr_cd_payload.json
+          mkdir ./payloads
+          echo {\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"} > ./payloads/pr_cd_payload.json
       
       - name: Upload PR CD payload
         id: upload-metadata
         uses: actions/upload-artifact@v7
         with:
-          name: pr-cd-payload
-          path: ${{ runner.temp }}/payloads/pr_cd_payload.json
+          name: pr-cd-payload.json
+          path: /payloads/pr_cd_payload.json
 
 # To re-elevate permissions, the next steps are handled in cd_receive_pr_artifact.

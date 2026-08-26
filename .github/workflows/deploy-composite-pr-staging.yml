@@ -32,14 +32,14 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: pr-cd-payload
-          path: ${{ runner.temp }}/payloads
+          path: ${{ runner.temp }}/
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Unpack payload inputs
         id: extract-json
         run: |
-          payload=cat ${{ runner.temp }}/pr_cd_payload.json
+          payload=`cat ${{ runner.temp }}/pr_cd_payload.json`
           echo "payload_json=$payload" >> $GITHUB_OUTPUT
           echo $payload
       
