@@ -45,10 +45,14 @@ jobs:
       
       - name: Parse payload inputs
         id: parse-json
+        env:
+          TEMP_NUM: fromJson(steps.extract-json.outputs.payload_json).pr_number
+          TEMP_ID: fromJson(steps.extract-json.outputs.payload_json).build_id
+          TEMP_SN: fromJson(steps.extract-json.outputs.payload_json).should_notify
         run: |
-          echo "PR_NUMBER=${{ fromJson(steps.extract-json.outputs.payload_json).pr_number }}" >> $GITHUB_ENV
-          echo "BUILD_ID=${{ fromJson(steps.extract-json.outputs.payload_json).build_id }}" >> $GITHUB_ENV
-          echo "SHOULD_NOTIFY=${{ fromJson(steps.extract-json.outputs.payload_json).should_notify }}" >> $GITHUB_ENV
+          echo "PR_NUMBER=$TEMP_NUM" >> $GITHUB_ENV
+          echo "BUILD_ID=$TEMP_ID" >> $GITHUB_ENV
+          echo "SHOULD_NOTIFY=$TEMP_SN" >> $GITHUB_ENV
       
       - name: Verify and set target path
         run: |
