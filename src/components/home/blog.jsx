@@ -6,7 +6,7 @@ const Blog = () => {
       <div className="container mx-auto">
         <div className="text-center mb-8">
           <h2 className="section-heading">More Updates</h2>
-          <h3 className="section-subheading">Stay updated with the latest news and updates about NGIAB from CIROH DocuHub</h3>
+          <h3 className="section-subheading">Stay updated with the latest news and updates about NGIAB from CIROH Hub</h3>
         </div>
         <div className="flex justify-center mb-8">
           <a

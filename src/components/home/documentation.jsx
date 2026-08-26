@@ -43,7 +43,7 @@ const Documentation = () => {
           <h3 className="section-subheading">Comprehensive guides and training materials for NextGen In A Box</h3>
         </div>
 
-        {/* DocuHub Section */}
+        {/* Hub Section */}
         <div className="mb-20">
           <div className="flex flex-col md:flex-row items-start gap-10 max-w-7xl mx-auto">
             {/* Left side: Text and links */}
@@ -117,7 +117,7 @@ const Documentation = () => {
                 </div>
                 <div className="px-3 py-2 text-center">
                   <p className="text-sm text-gray-500 italic">
-                    Explore the DocuHub interface and learn how to navigate its comprehensive resources
+                    Explore the Hub interface and learn how to navigate its comprehensive resources
                   </p>
                 </div>
               </div>
