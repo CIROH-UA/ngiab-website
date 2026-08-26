@@ -14,10 +14,7 @@ const Demo = () => {
       data-aos="fade-up"
       data-aos-delay="100"
     >
-      <h2 className="section-heading">NGIAB End-to-End Workflow</h2>
-      <h3 className="section-subheading">
-        Demo Videos
-      </h3>
+      <h2 className="section-heading">NGIAB + NRDS Demo Videos</h2>
     </div>
 
     {/* Videos */}
@@ -33,7 +30,6 @@ const Demo = () => {
               className="absolute top-0 left-0 w-full h-full rounded-lg"
               src="https://www.youtube.com/embed/l3XoBFHCPtk"
               title="NGIAB Data Preparation Demo"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
@@ -46,12 +42,23 @@ const Demo = () => {
               className="absolute top-0 left-0 w-full h-full rounded-lg"
               src="https://www.youtube.com/embed/1KvxVhrGX1M"
               title="NGIAB Local Run Guide Script Demo"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
           <p className="mt-3 text-center text-gray-700 font-medium">Running NGIAB Locally Using the Guide Script</p>
+        </div>
+        <div className="md:col-span-2 md:w-1/2 md:justify-self-center">
+          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-xl shadow-lg border border-gray-200 bg-black">
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-lg"
+              src="https://www.youtube.com/embed/hEHrYQwserc"
+              title="NRDS Visualizer Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <p className="mt-3 text-center text-gray-700 font-medium">NRDS Visualizer Demo</p>
         </div>
       </div>
       {/* Caption */}
