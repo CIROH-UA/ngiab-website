@@ -134,7 +134,7 @@ const Nrds = () => {
             CLI-driven workflows, and long-running NextGen simulations.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 title: 'Forcing Processor',
@@ -159,6 +159,14 @@ const Nrds = () => {
                 image: '/assets/img/tool/nrds.png',
                 repo: 'https://github.com/CIROH-UA/ngen-datastream',
                 issues: 'https://github.com/CIROH-UA/ngen-datastream/issues/new',
+              },
+              {
+                title: 'NRDS Client',
+                description: 'Geospatial visualization of catchments, flowpaths, and CONUS gauges, plus time series analysis, pulling model outputs directly from the NRDS S3 bucket.',
+                badge: 'Data Visualization',
+                image: '/assets/img/tool/ngiab_visualizer.jpeg',
+                repo: 'https://github.com/CIROH-UA/nrds-client',
+                issues: 'https://github.com/CIROH-UA/nrds-client/issues/new',
               },
             ].map((tool, idx) => (
               <div
