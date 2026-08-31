@@ -20,12 +20,13 @@ env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
 
 concurrency:
-  group: ci-ngiab-website-pr-${{ github.event.pull_request.number }}
+  group: ci-ngiab-website-pr-deploy-${{ github.event.workflow_run.id }}
   cancel-in-progress: false
 
 jobs:
   pr-deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - name: Download PR CD payload
@@ -39,9 +40,9 @@ jobs:
       - name: Unpack payload inputs
         id: extract-json
         run: |
-          payload=`cat ${{ runner.temp }}/pr_cd_payload.json`
-          echo "payload_json=$payload" >> $GITHUB_OUTPUT
-          echo $payload
+          payload=$(cat "${{ runner.temp }}/pr_cd_payload.json")
+          echo "payload_json=$payload" >> "$GITHUB_OUTPUT"
+          echo "$payload"
       
       - name: Parse payload inputs
         id: parse-json
@@ -50,21 +51,23 @@ jobs:
           TEMP_ID: ${{ fromJson(steps.extract-json.outputs.payload_json).build_id }}
           TEMP_SN: ${{ fromJson(steps.extract-json.outputs.payload_json).should_notify }}
         run: |
-          echo "PR_NUMBER=$TEMP_NUM" >> $GITHUB_ENV
-          echo "BUILD_ID=$TEMP_ID" >> $GITHUB_ENV
-          echo "SHOULD_NOTIFY=$TEMP_SN" >> $GITHUB_ENV
-      
+          {
+            echo "PR_NUMBER=$TEMP_NUM"
+            echo "BUILD_ID=$TEMP_ID"
+            echo "SHOULD_NOTIFY=$TEMP_SN"
+          } >> "$GITHUB_ENV"
+
       - name: Verify and set target path
         run: |
           INT_REGEX='^[0-9]+$'
-          if !["$PR_NUMBER" =~ "$INT_REGEX"]; then
-            echo "Provided PR number '${PR_NUMBER}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
+          if [[ ! "$PR_NUMBER" =~ $INT_REGEX ]]; then
+            echo "Provided PR number '${PR_NUMBER}' is not a valid integer. Aborting." >> "$GITHUB_STEP_SUMMARY"
             exit 1
-          elif !["$BUILD_ID" =~ "$INT_REGEX"]; then
-            echo "Provided build id '${BUILD_ID}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
+          elif [[ ! "$BUILD_ID" =~ $INT_REGEX ]]; then
+            echo "Provided build id '${BUILD_ID}' is not a valid integer. Aborting." >> "$GITHUB_STEP_SUMMARY"
             exit 1
           fi
-          echo "TARGET_PATH=staging/$PR_NUMBER" >> $GITHUB_ENV
+          echo "TARGET_PATH=staging/$PR_NUMBER" >> "$GITHUB_ENV"
 
       - name: Download build artifact
         uses: actions/download-artifact@v8

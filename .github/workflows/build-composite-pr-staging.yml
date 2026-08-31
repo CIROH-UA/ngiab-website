@@ -41,8 +41,8 @@ jobs:
         if: vars.SKIP_VITE_PEPY != 'true'
         run: |
           if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
-            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
-            exit 1
+            echo "::warning::No Pepy API token available (expected for fork PR builds, which don't receive secrets). Skipping; the deployed preview will show a fetch error for pull stats."
+            exit 0
           fi
 
           curl -sSf \
@@ -75,13 +75,13 @@ jobs:
           SHOULD_NOTIFY: ${{ vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true' && github.event.action == 'labeled' && github.event.label.name == 'preview on staging' }}
         run: |
           mkdir ./payloads
-          echo {\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"} > ./payloads/pr_cd_payload.json
-      
+          echo "{\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"}" > ./payloads/pr_cd_payload.json
+
       - name: Upload PR CD payload
         id: upload-metadata
         uses: actions/upload-artifact@v7
         with:
-          name: pr-cd-payload.json
-          path: /payloads/pr_cd_payload.json
+          name: pr-cd-payload
+          path: ./payloads/pr_cd_payload.json
 
 # To re-elevate permissions, the next steps are handled in cd_receive_pr_artifact.
