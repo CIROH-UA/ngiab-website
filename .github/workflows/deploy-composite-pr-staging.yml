@@ -77,12 +77,11 @@ jobs:
           path: build/
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout staging repository
-        uses: actions/checkout@v5
+      # Mostly for the sake of the deploy action, which assumes a git directory is present
+      - name: Checkout
+        uses: actions/checkout@v7
         with:
-          repository: ${{ env.TARGET_REPO }}
-          fetch-depth: 0
-          ssh-key: ${{ secrets.SSH_DEPLOY_NGIAB_SUBDOMAIN }}
+          filter: 'blob:none' # only retrieve metadata
 
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
