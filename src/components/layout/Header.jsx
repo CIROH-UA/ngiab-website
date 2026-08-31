@@ -5,10 +5,13 @@ import { HashLink } from 'react-router-hash-link';
 const NAV_ITEMS = [
   { id: 'tool', label: 'NGIAB' },
   { id: 'nrds', label: 'NRDS' },
+  { id: 'run-ways', label: 'CCNH', activateTab: 'jupyterhub' },
   { id: 'ngiab-demo', label: 'Demo' },
   { id: 'contribute', label: 'Contribute' },
   { id: 'blog', label: 'News' },
 ];
+
+export const RUN_WAYS_TAB_EVENT = 'run-ways:set-tab';
 
 const SCROLL_OFFSET = 96;
 
@@ -110,6 +113,9 @@ const Header = () => {
               clickLockTimeoutRef.current = setTimeout(() => {
                 clickLockRef.current = false;
               }, CLICK_SCROLL_LOCK_MS);
+              if (item.activateTab) {
+                window.dispatchEvent(new CustomEvent(RUN_WAYS_TAB_EVENT, { detail: item.activateTab }));
+              }
             }}
             className={`relative z-10 whitespace-nowrap px-6 py-3 rounded-full text-base font-medium transition-colors duration-300 ${
               activeId === item.id ? 'text-white' : 'text-slate-600 hover:text-primary'
