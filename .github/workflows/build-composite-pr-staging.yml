@@ -1,0 +1,87 @@
+name: 'Build PR for staging'
+run-name: 'Deploy PR #${{github.event.pull_request.number}} to composite target for staging'
+
+on:
+  pull_request:
+    branches: [main]
+    types: [labeled, reopened, synchronize]
+
+permissions:
+  artifact-metadata: write
+  contents: read
+
+env:
+  TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/staging/${{ github.event.pull_request.number }}
+
+concurrency:
+  group: ci-ngiab-website-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  pr-build:
+    if: ${{ contains(github.event.pull_request.labels.*.name, 'preview on staging') && ( github.event.action != 'labeled' || github.event.label.name == 'preview on staging' ) }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}       
+          repository: ${{ github.event.pull_request.head.repo.full_name }} 
+
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Fetch Pepy stats artifact
+        if: vars.SKIP_VITE_PEPY != 'true'
+        run: |
+          if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
+            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
+            exit 1
+          fi
+
+          curl -sSf \
+            -H "X-API-Key: $VITE_PEPY_TECH_TOKEN" \
+            "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
+            > public/pepy-stats.json
+
+        env:
+          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
+          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: ""
+
+      - name: Upload a Build Artifact
+        id: upload-build
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-${{ env.PR_NUMBER }}
+          path: build/
+      
+      - name: Write PR CD payload to json
+        id: define-metadata
+        env:
+          BUILD_ID: ${{ steps.upload-build.outputs.artifact-id }}
+          SHOULD_NOTIFY: ${{ vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true' && github.event.action == 'labeled' && github.event.label.name == 'preview on staging' }}
+        run: |
+          mkdir ./payloads
+          echo {\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"} > ./payloads/pr_cd_payload.json
+      
+      - name: Upload PR CD payload
+        id: upload-metadata
+        uses: actions/upload-artifact@v7
+        with:
+          name: pr-cd-payload.json
+          path: /payloads/pr_cd_payload.json
+
+# To re-elevate permissions, the next steps are handled in cd_receive_pr_artifact.

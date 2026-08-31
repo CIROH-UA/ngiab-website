@@ -1,63 +1,77 @@
+# Security posture: supporting PRs in staging requires running and deploying untrusted code.
+# However, by limiting deployments to the `/staging` subdirectory via this workflow,
+# we minimize the potential attack surface to a known subset of pages.
+
 name: 'Deploy PR to composite target for staging'
-run-name: 'Deploy PR #${{github.event.pull_request.number}} to composite target for staging'
+run-name: 'Deploy PR to composite target for staging'
 
 on:
-  pull_request_target:
-    branches: [main]
-    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: [Build PR for staging]
+    types:
+      - completed
+
+permissions:
+  artifact-metadata: write
+  contents: read
+  pull-requests: write
 
 env:
   TARGET_REPO: ${{ vars.COMPOSITE_TARGET_REPO }}
-  TARGET_PATH: staging/${{ github.event.pull_request.number }}
-  VITE_BASE_URL: ${{ vars.DEFAULT_VITE_BASE_URL }}/staging/${{ github.event.pull_request.number }}
 
 concurrency:
   group: ci-ngiab-website-pr-${{ github.event.pull_request.number }}
   cancel-in-progress: false
 
 jobs:
-  pr-build-deploy:
+  pr-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: pr-staging
-      url: https://ngiab.ciroh.org/${{ env.TARGET_PATH }}
+
     steps:
-
-      - name: Checkout PR Branch
-        uses: actions/checkout@v5
+      - name: Download PR CD payload
+        uses: actions/download-artifact@v8
         with:
-          ref: ${{ github.event.pull_request.head.ref }}       
-          repository: ${{ github.event.pull_request.head.repo.full_name }} 
-
-      - name: Set up Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Fetch Pepy stats artifact
-        if: vars.SKIP_VITE_PEPY != 'true'
+          name: pr-cd-payload
+          path: ${{ runner.temp }}/
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Unpack payload inputs
+        id: extract-json
         run: |
-          if [ -z "$VITE_PEPY_TECH_TOKEN" ]; then
-            echo "Missing Pepy API token. Set VITE_PEPY_TECH_TOKEN or PEPY_TECH_TOKEN in repository secrets."
+          payload=`cat ${{ runner.temp }}/pr_cd_payload.json`
+          echo "payload_json=$payload" >> $GITHUB_OUTPUT
+          echo $payload
+      
+      - name: Parse payload inputs
+        id: parse-json
+        env:
+          TEMP_NUM: ${{ fromJson(steps.extract-json.outputs.payload_json).pr_number }}
+          TEMP_ID: ${{ fromJson(steps.extract-json.outputs.payload_json).build_id }}
+          TEMP_SN: ${{ fromJson(steps.extract-json.outputs.payload_json).should_notify }}
+        run: |
+          echo "PR_NUMBER=$TEMP_NUM" >> $GITHUB_ENV
+          echo "BUILD_ID=$TEMP_ID" >> $GITHUB_ENV
+          echo "SHOULD_NOTIFY=$TEMP_SN" >> $GITHUB_ENV
+      
+      - name: Verify and set target path
+        run: |
+          INT_REGEX='^[0-9]+$'
+          if !["$PR_NUMBER" =~ "$INT_REGEX"]; then
+            echo "Provided PR number '${PR_NUMBER}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          elif !["$BUILD_ID" =~ "$INT_REGEX"]; then
+            echo "Provided build id '${BUILD_ID}' is not a valid integer. Aborting." >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
+          echo "TARGET_PATH=staging/$PR_NUMBER" >> $GITHUB_ENV
 
-          curl -sSf \
-            -H "X-API-Key: $VITE_PEPY_TECH_TOKEN" \
-            "$VITE_PEPY_TECH_BASE_URL/api/v2/projects/NGIAB-data-preprocess" \
-            > public/pepy-stats.json
-
-        env:
-          VITE_PEPY_TECH_TOKEN: ${{ secrets.VITE_PEPY_TECH_TOKEN != '' && secrets.VITE_PEPY_TECH_TOKEN || secrets.PEPY_TECH_TOKEN }}
-          VITE_PEPY_TECH_BASE_URL: ${{ secrets.VITE_PEPY_TECH_BASE_URL != '' && secrets.VITE_PEPY_TECH_BASE_URL || 'https://api.pepy.tech' }}
-
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-        env:
-          CI: ""
+      - name: Download build artifact
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ env.BUILD_ID }}
+          path: build/
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
@@ -69,11 +83,10 @@ jobs:
           clean: true # Set to false if deploying to a composite repository's root!
           git-config-name: "github-actions"
           git-config-email: "github-actions@github.com"
-
       
       - name: Comment PR with staging link
         uses: mshick/add-pr-comment@v2
-        if: vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true'
+        if: ${{ vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true' && env.SHOULD_NOTIFY == 'true' }}
         with:
           message: |
             **Staging Preview:**
