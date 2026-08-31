@@ -77,6 +77,12 @@ jobs:
           path: build/
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Mostly for the sake of the deploy action, which assumes a git directory is present
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          filter: 'blob:none' # only retrieve metadata
+
       - name: Deploy to composite repository
         uses: JamesIves/github-pages-deploy-action@v4
         with:
