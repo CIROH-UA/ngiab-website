@@ -73,6 +73,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           artifact-ids: ${{ env.BUILD_ID }}
+          run-id: ${{ github.event.workflow_run.id }}
           path: build/
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
