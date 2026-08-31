@@ -17,6 +17,7 @@ const DockerPullCounter = () => {
   const [animatedCount, setAnimatedCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const containerRef = useRef(null);
+  const TARGET_PULLS = 50000;
 
   const [pepyLoading, setPepyLoading] = useState(true);
   const [pepyError, setPepyError] = useState(null);
