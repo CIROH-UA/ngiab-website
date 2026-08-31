@@ -75,7 +75,7 @@ jobs:
           SHOULD_NOTIFY: ${{ vars.SILENCE_COMPOSITE_PR_MESSAGE != 'true' && github.event.action == 'labeled' && github.event.label.name == 'preview on staging' }}
         run: |
           mkdir ./payloads
-          echo "{\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"}" > ./payloads/pr_cd_payload.json
+          echo {\"pr_number\": \"${PR_NUMBER}\", \"build_id\": \"${BUILD_ID}\", \"should_notify\": \"${SHOULD_NOTIFY}\"} > ./payloads/pr_cd_payload.json
 
       - name: Upload PR CD payload
         id: upload-metadata
