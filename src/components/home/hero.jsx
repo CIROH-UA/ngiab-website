@@ -133,8 +133,8 @@ const Hero = () => {
                     data-aos="zoom-in"
                     data-aos-delay="300"
                   />
-                  <h1 className="text-7xl font-bold uppercase mb-6" data-aos="fade-up" data-aos-delay="400">NextGen In A Box</h1>
-                  <p className="text-4xl mb-12" data-aos="fade-up" data-aos-delay="600">Transforming Hydrology Modeling using open-source technologies</p>
+                  <h1 className="text-7xl font-bold uppercase mb-6" data-aos="fade-up" data-aos-delay="400">Community NextGen Ecosystem</h1>
+                  <p className="text-4xl mb-12" data-aos="fade-up" data-aos-delay="600">Community Water Modelling using Open-Source Technologies</p>
                   <div className="space-x-6" data-aos="fade-up" data-aos-delay="800">
                     <HashLink 
                       smooth 

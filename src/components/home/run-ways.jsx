@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { RUN_WAYS_TAB_EVENT } from '../layout/Header';
 
 const runWaysTabs = [
    {
@@ -53,6 +54,16 @@ const runWaysTabs = [
 const RunWays = () => {
   const [activeId, setActiveId] = useState(runWaysTabs[0].id);
   const active = runWaysTabs.find((way) => way.id === activeId) ?? runWaysTabs[0];
+
+  useEffect(() => {
+    const onSetTab = (event) => {
+      if (runWaysTabs.some((way) => way.id === event.detail)) {
+        setActiveId(event.detail);
+      }
+    };
+    window.addEventListener(RUN_WAYS_TAB_EVENT, onSetTab);
+    return () => window.removeEventListener(RUN_WAYS_TAB_EVENT, onSetTab);
+  }, []);
 
   return (
     <section className="bg-gray-900" id="run-ways">
