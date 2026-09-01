@@ -13,6 +13,7 @@ import Blog from '../components/home/blog';
 import Nrds from '../components/home/nrds';
 import VideoTestimonial from '../components/home/VideoTestimonial';
 import Contribute from '../components/home/contribute';
+import Header from '../components/layout/Header';
 
 const Home = () => {
   useEffect(() => {
@@ -75,6 +76,8 @@ const Home = () => {
     <div>
       {/* Hero Section (Landing page with the water video background) */}
       <Hero />
+
+      <Header />
 
       {/* About Section */}
       <About />
