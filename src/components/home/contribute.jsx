@@ -1,6 +1,27 @@
 import React, { useRef, useEffect } from 'react';
 import 'aos/dist/aos.css';
 
+const nrdsContributions = [
+    {
+        href: 'https://github.com/CIROH-UA/ngen-datastream/tree/main/docs/nrds/contribute/README.md',
+        icon: 'fas fa-code-branch',
+        title: 'Contribute to NRDS Configuration',
+        description: 'Help improve NRDS by updating parameters, calibration values, or realization files used in daily NextGen simulations.',
+    },
+    {
+        href: 'https://github.com/CIROH-UA/forcingprocessor/issues/new?template=forcing_contribution.yml',
+        icon: 'fas fa-cloud-rain',
+        title: 'Contribute Forcing Configuration',
+        description: 'Submit new or updated forcing data configurations through the Forcing Processor contribution template.',
+    },
+    {
+        href: 'https://github.com/CIROH-UA/datastreamcli/issues/new?template=metadata_request.yml',
+        icon: 'fas fa-database',
+        title: 'Request Metadata Update',
+        description: 'Request additions or changes to DataStream CLI metadata through the metadata request template.',
+    },
+];
+
 const Contribute = () => {
     return (
         <section className="bg-blue-50 py-20" id="contribute">
@@ -35,6 +56,37 @@ const Contribute = () => {
                                 <i className="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                {/* Contribute to NRDS Section */}
+                <div className="mt-12" data-aos="fade-up" data-aos-duration="800">
+                    <div className="text-center mb-8">
+                        <h3 className="text-3xl font-bold text-gray-900 mb-3">Contribute to NRDS</h3>
+                        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                            Ways to contribute forcing data, configuration, and metadata to the NextGen Research DataStream.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {nrdsContributions.map((item) => (
+                            <a
+                                key={item.title}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group block border border-slate-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                            >
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary text-white shrink-0">
+                                        <i className={`${item.icon} text-lg`} />
+                                    </div>
+                                    <h4 className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                        {item.title}
+                                    </h4>
+                                </div>
+                                <p className="text-gray-600">{item.description}</p>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
