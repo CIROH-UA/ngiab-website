@@ -93,3 +93,10 @@ This project uses:
 - Styled Components
 - Tailwind CSS
 - Axios for HTTP requests
+
+## Citing this software
+Arpita Patel, James Halgren, Zach Wills, et al. NextGen In A Box (NGIAB): Open-Source Containerization of the NextGen Framework to Enable Community-Driven Hydrology Modeling. Environmental Modelling & Software, page 106666, August 2025. ISSN 1364-8152. doi: 10.1016/j.envsoft.2025.106666. URL https://www.sciencedirect.com/science/article/pii/S1364815225003500.
+
+| | |
+| --- | --- |
+| ![CIROH Logo](https://github.com/CIROH-UA/NGIAB-CloudInfra/blob/main/docs/img/ciroh-bgsafe.png) | Funding for this project was provided by the National Oceanic & Atmospheric Administration (NOAA), awarded to the Cooperative Institute for Research to Operations in Hydrology (CIROH) through the NOAA Cooperative Agreement with The University of Alabama (NA22NWS4320003). |
