@@ -1,3 +1,4 @@
+// TODO: Address https://github.com/microsoft/TypeScript/issues/62508#issuecomment-3348649259
 {
   "compilerOptions": {
     "paths": {
