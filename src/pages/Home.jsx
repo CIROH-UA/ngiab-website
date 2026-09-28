@@ -14,6 +14,7 @@ import Nrds from '../components/home/nrds';
 import VideoTestimonial from '../components/home/VideoTestimonial';
 import Contribute from '../components/home/contribute';
 import Header from '../components/layout/Header';
+import Citations from '../components/home/citations';
 
 const Home = () => {
   useEffect(() => {
@@ -115,6 +116,9 @@ const Home = () => {
 
       {/* Partners Logo Carousel */}
       <Partner />
+
+      {/* Citations Section (how to cite the papers behind these tools) */}
+      <Citations />
 
       {/* Contact + Resources Section */}
       <Contact />

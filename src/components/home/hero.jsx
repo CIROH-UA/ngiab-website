@@ -54,7 +54,18 @@ const Hero = () => {
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-              
+
+              {/* Feedback link */}
+              <a
+                href="https://forms.cloud.microsoft/r/TNHayjkXcd"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed top-4 right-4 z-30 inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 px-4 py-2 text-sm font-semibold text-primary shadow-lg hover:bg-white transition-colors duration-200"
+              >
+                <i className="fas fa-comment-dots" />
+                Feedback
+              </a>
+
               {/* Combined Announcements */}
               <div className="absolute top-3 md:top-2 left-0 right-0 z-20">
                 <div className="container mx-auto px-4">
